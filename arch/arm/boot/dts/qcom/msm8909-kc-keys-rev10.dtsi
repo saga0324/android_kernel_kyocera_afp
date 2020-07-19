@@ -1,0 +1,53 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&spmi_bus {
+        qcom,pm8916@0 {
+                pm8916_pon: qcom,power-on@800 {
+                        qcom,pon_2 {
+                                linux,code = <55>;
+                        };
+                };
+        };
+};
+
+&soc {
+        matrix_keypad: matrix_keypad@0 {
+                linux,keymap = <
+                    0x00000002	/* KEY_1 [2] */
+                    0x00010005	/* KEY_4 [5] */
+                    0x00020008	/* KEY_7 [8] */
+                    0x0004003E	/* KEY_F4 [62] */
+                    0x01000003	/* KEY_2 [3] */
+                    0x01010006	/* KEY_5 [6] */
+                    0x01020009	/* KEY_8 [9] */
+                    0x0103000b	/* KEY_0 [11]*/
+                    0x0104003d	/* KEY_F3 [61] */
+                    0x02000004	/* KEY_3 [4] */
+                    0x02010007	/* KEY_6 [7] */
+                    0x0202000a	/* KEY_9 [10] */
+                    0x020300FD	/* KEY_SHARP [253] */
+                    0x02040163	/* KEY_CLEAR [0x163] */
+                    0x0305001C	/* KEY_ENTER [28] */
+                    0x03060067	/* KEY_UP [103] */
+                    0x0307006A	/* KEY_RIGHT [106] */
+                    0x04060069	/* KEY_LEFT [105] */
+                    0x0407006C	/* KEY_DOWN [108] */
+                    0x0503003B	/* KEY_F1 [59] */
+                    0x050400E7	/* KEY_SEND [231] */
+                    0x0505003C	/* KEY_F2 [60] */
+                >;
+        };
+};
+

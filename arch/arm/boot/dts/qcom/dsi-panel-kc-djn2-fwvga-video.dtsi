@@ -1,0 +1,267 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2016 KYOCERA Corporation
+ * (C) 2017 KYOCERA Corporation
+ * (C) 2019 KYOCERA Corporation
+ */
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&mdss_mdp {
+	dsi_kc_djn2_fwvga_vid: qcom,mdss_dsi_kc_djn2_fwvga_video {
+		qcom,mdss-dsi-panel-name = "kc djn2 fwvga video mode dsi panel";
+		qcom,mdss-dsi-panel-controller = <&mdss_dsi0>;
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-panel-destination = "display_1";
+		qcom,mdss-dsi-panel-framerate = <60>;
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-panel-width = <480>;
+		qcom,mdss-dsi-panel-height = <854>;
+		qcom,mdss-dsi-h-front-porch = <30>;
+		qcom,mdss-dsi-h-back-porch = <30>;
+		qcom,mdss-dsi-h-pulse-width = <10>;
+		qcom,mdss-dsi-h-sync-skew = <0>;
+		qcom,mdss-dsi-v-back-porch = <10>;
+		qcom,mdss-dsi-v-front-porch = <10>;
+		qcom,mdss-dsi-v-pulse-width = <4>;
+		qcom,mdss-dsi-h-left-border = <0>;
+		qcom,mdss-dsi-h-right-border = <0>;
+		qcom,mdss-dsi-v-top-border = <0>;
+		qcom,mdss-dsi-v-bottom-border = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-on-command = [
+			29 01 00 00 00 00 06 FF FF 98 06 04 01
+			23 01 00 00 00 00 02 0A 01
+			23 01 00 00 00 00 02 20 01
+			23 01 00 00 00 00 02 23 02
+			23 01 00 00 00 00 02 25 0A
+			23 01 00 00 00 00 02 26 0D
+			23 01 00 00 00 00 02 27 28
+			23 01 00 00 00 00 02 28 00
+			23 01 00 00 00 00 02 30 01
+			23 01 00 00 00 00 02 31 00
+			23 01 00 00 00 00 02 34 00
+			23 01 00 00 00 00 02 35 07
+			23 01 00 00 00 00 02 40 00
+			23 01 00 00 00 00 02 41 77
+			23 01 00 00 00 00 02 42 22
+			23 01 00 00 00 00 02 43 00
+			23 01 00 00 00 00 02 44 06
+			23 01 00 00 00 00 02 45 02
+			23 01 00 00 00 00 02 46 33
+			23 01 00 00 00 00 02 47 33
+			23 01 00 00 00 00 02 50 A0
+			23 01 00 00 00 00 02 51 A0
+			23 01 00 00 00 00 02 52 00
+			23 01 00 00 00 00 02 53 01
+			23 01 00 00 00 00 02 54 00
+			23 01 00 00 00 00 02 55 01
+			23 01 00 00 00 00 02 56 00
+			23 01 00 00 00 00 02 57 20
+			23 01 00 00 00 00 02 58 90
+			23 01 00 00 00 00 02 60 00
+			23 01 00 00 00 00 02 61 00
+			23 01 00 00 00 00 02 62 06
+			23 01 00 00 00 00 02 63 00
+			23 01 00 00 00 00 02 80 00
+			23 01 00 00 00 00 02 81 00
+			23 01 00 00 00 00 02 82 0A
+			23 01 00 00 00 00 02 A0 00
+			23 01 00 00 00 00 02 A1 0E
+			23 01 00 00 00 00 02 A2 18
+			23 01 00 00 00 00 02 A3 0F
+			23 01 00 00 00 00 02 A4 07
+			23 01 00 00 00 00 02 A5 0E
+			23 01 00 00 00 00 02 A6 06
+			23 01 00 00 00 00 02 A7 04
+			23 01 00 00 00 00 02 A8 09
+			23 01 00 00 00 00 02 A9 0C
+			23 01 00 00 00 00 02 AA 0E
+			23 01 00 00 00 00 02 AB 07
+			23 01 00 00 00 00 02 AC 0F
+			23 01 00 00 00 00 02 AD 10
+			23 01 00 00 00 00 02 AE 09
+			23 01 00 00 00 00 02 AF 00
+			23 01 00 00 00 00 02 C0 00
+			23 01 00 00 00 00 02 C1 0E
+			23 01 00 00 00 00 02 C2 18
+			23 01 00 00 00 00 02 C3 0F
+			23 01 00 00 00 00 02 C4 07
+			23 01 00 00 00 00 02 C5 0E
+			23 01 00 00 00 00 02 C6 06
+			23 01 00 00 00 00 02 C7 04
+			23 01 00 00 00 00 02 C8 09
+			23 01 00 00 00 00 02 C9 0C
+			23 01 00 00 00 00 02 CA 0E
+			23 01 00 00 00 00 02 CB 07
+			23 01 00 00 00 00 02 CC 0F
+			23 01 00 00 00 00 02 CD 10
+			23 01 00 00 00 00 02 CE 09
+			23 01 00 00 00 00 02 CF 00
+			29 01 00 00 00 00 06 FF FF 98 06 04 02
+			23 01 00 00 00 00 02 40 00
+			29 01 00 00 00 00 06 FF FF 98 06 04 06
+			23 01 00 00 00 00 02 00 21
+			23 01 00 00 00 00 02 01 01
+			23 01 00 00 00 00 02 02 60
+			23 01 00 00 00 00 02 03 02
+			23 01 00 00 00 00 02 04 03
+			23 01 00 00 00 00 02 05 03
+			23 01 00 00 00 00 02 06 00
+			23 01 00 00 00 00 02 07 00
+			23 01 00 00 00 00 02 08 07
+			23 01 00 00 00 00 02 09 00
+			23 01 00 00 00 00 02 0A 00
+			23 01 00 00 00 00 02 0B 00
+			23 01 00 00 00 00 02 0C 0A
+			23 01 00 00 00 00 02 0D 0A
+			23 01 00 00 00 00 02 0E 00
+			23 01 00 00 00 00 02 0F 00
+			23 01 00 00 00 00 02 10 44
+			23 01 00 00 00 00 02 11 40
+			23 01 00 00 00 00 02 12 00
+			23 01 00 00 00 00 02 13 00
+			23 01 00 00 00 00 02 14 00
+			23 01 00 00 00 00 02 15 C0
+			23 01 00 00 00 00 02 16 08
+			23 01 00 00 00 00 02 17 05
+			23 01 00 00 00 00 02 18 05
+			23 01 00 00 00 00 02 19 00
+			23 01 00 00 00 00 02 1A 00
+			23 01 00 00 00 00 02 1B 00
+			23 01 00 00 00 00 02 20 01
+			23 01 00 00 00 00 02 21 23
+			23 01 00 00 00 00 02 22 45
+			23 01 00 00 00 00 02 23 67
+			23 01 00 00 00 00 02 24 01
+			23 01 00 00 00 00 02 25 23
+			23 01 00 00 00 00 02 26 45
+			23 01 00 00 00 00 02 27 67
+			23 01 00 00 00 00 02 30 01
+			23 01 00 00 00 00 02 31 22
+			23 01 00 00 00 00 02 32 22
+			23 01 00 00 00 00 02 33 86
+			23 01 00 00 00 00 02 34 68
+			23 01 00 00 00 00 02 35 BA
+			23 01 00 00 00 00 02 36 BA
+			23 01 00 00 00 00 02 37 AB
+			23 01 00 00 00 00 02 38 AB
+			23 01 00 00 00 00 02 39 22
+			23 01 00 00 00 00 02 3A 22
+			23 01 00 00 00 00 02 3B 22
+			23 01 00 00 00 00 02 3C 22
+			23 01 00 00 00 00 02 3D 22
+			23 01 00 00 00 00 02 3E 22
+			23 01 00 00 00 00 02 3F 22
+			23 01 00 00 00 00 02 40 22
+			23 01 00 00 00 00 02 52 12
+			23 01 00 00 00 00 02 53 12
+			23 01 00 00 00 00 02 54 03
+			29 01 00 00 00 00 06 FF FF 98 06 04 07
+			23 01 00 00 00 00 02 00 51
+			23 01 00 00 00 00 02 02 00
+			23 01 00 00 00 00 02 06 02
+			23 01 00 00 00 00 02 17 33
+			23 01 00 00 00 00 02 B3 10
+			29 01 00 00 00 00 06 FF FF 98 06 04 05
+			23 01 00 00 00 00 02 00 02
+			29 01 00 00 00 00 06 FF FF 98 06 04 00
+			23 01 00 00 00 00 02 51 FF
+			23 01 00 00 00 00 02 55 01
+			23 01 00 00 00 00 02 53 24
+			05 01 00 00 78 00 01 11
+			05 01 00 00 00 00 01 29
+
+
+			];
+		qcom,mdss-dsi-on-post-command = [
+			
+			];
+		qcom,mdss-dsi-on-post2-command = [
+			
+			];
+		qcom,mdss-dsi-off-command = [
+			05 01 00 00 14 00 01 28
+			05 01 00 00 64 00 01 10
+			];
+		qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-on-post-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-on-post2-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-h-sync-pulse = <0>;
+		qcom,mdss-dsi-traffic-mode = "non_burst_sync_event";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-panel-timings = [6A 16 0E 00 38 3A 12 1C 10 03 04  00];
+		qcom,mdss-dsi-t-clk-post = <0x04>;
+		qcom,mdss-dsi-t-clk-pre = <0x17>;
+		qcom,mdss-dsi-bl-min-level = <1>;
+		qcom,mdss-dsi-bl-max-level = <4095>;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
+		qcom,mdss-pan-physical-width-dimension = <42>;
+		qcom,mdss-pan-physical-height-dimension = <74>;
+		qcom,mdss-dsi-reset-sequence = <0 4>, <1 7>, <0 2>, <1 10>;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,suspend-ulps-enabled;
+		qcom,esd-check-enabled;
+		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 01 0A];
+		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
+		qcom,mdss-dsi-panel-status-check-mode = "reg_read";
+		qcom,mdss-dsi-panel-status-value = <0x9C>;
+		qcom,mdss-dsi-lp11-init;
+
+		kc,dma-p-csc-mv = <
+			0x0050
+			0x009e
+			0x001f
+			0x007b
+			0x00f2
+			0x002f
+			0x0099
+			0x012d
+			0x003a
+		>;
+		kc,dma-p-csc-pre-bv = <
+			0x0000
+			0x0000
+			0x0000
+		>;
+		kc,dma-p-csc-post-bv = <
+			0x0000
+			0x0000
+			0x0000
+		>;
+		kc,dma-p-csc-pre-lv = <
+			0x0000
+			0x00ff
+			0x0000
+			0x00ff
+			0x0000
+			0x00ff
+		>;
+		kc,dma-p-csc-post-lv = <
+			0x0000
+			0x00ff
+			0x0000
+			0x00ff
+			0x0000
+			0x00ff
+		>;
+	};
+};
