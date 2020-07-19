@@ -4,6 +4,7 @@ Collection of Android Kernel Source for KYOCERA Android Feature Phone
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
+|SoftBank Y!Mobile SoftBankBiz|DIGNO ケータイ3 DIGNO ケータイ3 DIGNO ケータイ3 for Biz|902KC 903KC 904KC|8.1.0|3.18.71|1.010AN 1.010FO 1.010DE|2020/06/30|LA.UM.6.7.r1-08500-8x09.0|None
 |au|GRATINA|KYF39|5.1.1|3.10.49|102.0.2041|2020/06/04|LA.BR.1.2.3-10710-8x09.0|None
 |au|INFOBAR xv|KYX31|5.1.1|3.10.49|101.0.5400|2019/01/29|LA.BR.1.2.3-13810-8x09.0|None
 |au|かんたんケータイ|KYF38|5.1.1|3.10.49|102.0.0820|2020/03/02|LA.BR.1.2.3-10710-8x09.0|None
