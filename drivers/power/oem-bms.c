@@ -16,7 +16,7 @@
 #include <linux/module.h>
 #include <linux/power_supply.h>
 #include <linux/rtc.h>
-#include <oem-bms.h>
+#include "oem-bms.h"
 
 #define VBATT_SAMPLES			5
 #define POWER_OFF_SOC			0
