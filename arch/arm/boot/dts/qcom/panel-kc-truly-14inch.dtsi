@@ -1,0 +1,89 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2016 KYOCERA Corporation
+ * (C) 2017 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	disp_ext_sub: kc,disp_ext_sub {
+		compatible = "kc,disp_ext_sub";
+		vdd-supply = <&pm8909_l5>;
+		kc,disp-ext-sub-panel-width = <96>;
+		kc,disp-ext-sub-panel-height = <96>;
+		kc,disp-ext-sub-bpp = <16>;
+		kc,disp-ext-sub-pwron-cmd = [
+//							20 02 01 00
+							10 02 13 88
+							20 02 00 01
+							10 02 13 88
+				];
+		kc,disp-ext-sub-on-cmd = [
+							20 02 00 00
+							10 02 00 64
+							20 02 00 01
+							10 02 13 88
+							20 02 01 00
+							10 02 00 64
+
+							01 10 E2 AB 48 60 A0 C8 40 00 B0 11 00 44 10 F1 00 64
+							10 02 75 30
+							01 01 65
+							10 02 75 30
+							01 01 66
+							10 02 75 30
+							01 01 67
+							10 02 75 30
+							01 0B 25 81 30 52 4C 1D F7 02 F6 08 94
+
+							01 10 88 00 89 00 8A 55 8B 55 8C 55 8D 55 8E 99 8F 99
+
+							01 01 2C
+							10 02 75 30
+							01 01 2E
+							10 02 4E 20
+							01 01 2F
+							10 02 4E 20
+							20 02 01 01
+				];
+		kc,disp-ext-sub-post-on-cmd = [
+							20 02 01 00
+							10 02 00 64
+							01 01 AF
+							20 02 01 01
+				];
+		kc,disp-ext-sub-off-cmd = [
+							20 02 01 00
+							01 02 AE A9
+							10 02 C3 50
+							20 02 01 01
+				];
+		kc,disp-ext-sub-pwroff-cmd = [
+				];
+		kc,disp-ext-sub-ram-wr-cmd = [
+							01 03 B0 11 00
+				];
+
+		qcom,panel-supply-entries {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			qcom,supply-entry@0 {
+				reg = <0>;
+				qcom,supply-name = "vdd";
+				qcom,supply-min-voltage = <1800000>;
+				qcom,supply-max-voltage = <1800000>;
+				qcom,supply-enable-load = <30000>;
+				qcom,supply-disable-load = <100>;
+			};
+		};
+	};
+};
