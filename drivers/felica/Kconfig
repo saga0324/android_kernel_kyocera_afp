@@ -1,0 +1,15 @@
+#
+# drivers/felica/Kconfig
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2014 KYOCERA Corporation
+# (C) 2015 KYOCERA Corporation
+# (C) 2016 KYOCERA Corporation
+# (C) 2017 KYOCERA Corporation
+#
+
+config KFELICA
+	bool "kyocera felica driver"
+	default y
+	---help---
+	  Enable KC FeliCa driver.
