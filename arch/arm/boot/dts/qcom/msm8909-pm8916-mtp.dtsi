@@ -1,0 +1,188 @@
+/*
+ * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2016 KYOCERA Corporation
+ */
+
+&soc {
+	i2c@78b9000 {
+		tsc@33 {
+			vddio-supply = <&pm8916_l14>;
+			pct,i2c-gpio = <&pm8916_gpios 4 0>;
+		};
+	};
+
+	i2c@78b6000 {
+		nfc-nci@e {
+			qcom,clk-gpio = <&pm8916_gpios 2 0>;
+		};
+	};
+
+};
+
+&audio_codec_mtp {
+	status = "ok";
+	qcom,model = "msm8909-pm8916-snd-card";
+	asoc-codec = <&stub_codec>, <&pm8916_tombak_dig>;
+	asoc-codec-names = "msm-stub-codec.1", "tombak_codec";
+};
+
+&sdhc_1 {
+	vdd-supply = <&pm8916_l8>;
+	vdd-io-supply = <&pm8916_l5>;
+};
+
+&sdhc_2 {
+	vdd-supply = <&pm8916_l11>;
+	vdd-io-supply = <&pm8916_l12>;
+};
+
+&i2c_1 {
+	u2dh@19 {
+		acc-vdd-supply = <&pm8916_l5>;
+	};
+};
+&i2c_3 {
+#if 0
+	qcom,actuator@0 {
+		cam_vaf-supply = <&pm8916_l8>;
+	};
+#endif
+	qcom,eeprom@6c {
+		cam_vana-supply = <&pm8916_l10>;
+		cam_vio-supply = <&pm8916_l6>;
+		cam_vaf-supply = <&pm8916_l17>;
+	};
+	qcom,camera@0 {
+		cam_vana-supply = <&pm8916_l10>;
+		cam_vio-supply = <&pm8916_l6>;
+		cam_vaf-supply = <&pm8916_l17>;
+	};
+#if 0
+	qcom,camera@1 {
+		cam_vana-supply = <&pm8916_l10>;
+		cam_vio-supply = <&pm8916_l6>;
+	};
+#endif
+};
+
+&disp_ext_sub {
+	vdd-supply = <&pm8916_l5>;
+	i2c-supply = <&pm8916_l6>;
+	kc,disp-ext-sub-rst-gpio = <&pm8916_gpios 2 0>;
+	kc,disp-ext-sub-vh-gpio = <&pm8916_gpios 1 0>;
+};
+
+&pm8916_chg {
+	status = "ok";
+	qcom,charging-disabled;
+	qcom,use-external-charger;
+};
+
+&pm8916_bms {
+	status = "ok";
+	//qcom,battery-data = <&mtp_batterydata>;
+	qcom,battery-data = <&oem_batterydata>;
+	qcom,det-battery-data = <&oem_det_batterydata>;
+	qcom,batt-aging-comp;
+};
+
+&spmi_bus {
+	qcom,pm8916@1 {
+		qcom,vibrator@c000 {
+			status = "okay";
+			qcom,vib-timeout-ms = <15000>;
+			qcom,vib-vtg-level-mV = <3000>;
+		};
+	};
+
+	kc,qpnp_diag {
+		compatible = "oem,qpnp-diag";
+		reg = <0x0 0x0>;
+	};
+};
+
+&pm8916_mpps {
+	mpp@a000 { /* MPP 1 */
+		/* VDD_PX */
+		status = "disabled";
+	};
+
+	mpp@a100 { /* MPP 2 */
+		/* VCHG */
+		status = "ok";
+		qcom,mode = <4>;		/* Analog Input */
+		qcom,invert = <0>;		/* No Invert */
+		qcom,output-type = <0>;		/* CMOS */
+		qcom,src-sel = <0>;		/* QPNP_PIN_SEL_FUNC_CONSTANT */
+		qcom,ain-route = <1>;		/* QPNP_PIN_AIN_AMUX_CH6 */
+		qcom,master-en = <1>;		/* Enable MPP */
+	};
+
+	mpp@a200 { /* MPP 3 */
+		/* VREF DAC */
+		status = "disabled";
+	};
+
+	mpp@a300 { /* MPP 4 */
+		/* CAMERA_THERM */
+		status = "ok";
+		qcom,mode = <4>;		/* Analog input */
+		qcom,invert = <0>;		/* No Invert */
+		qcom,output-type = <0>;		/* CMOS */
+		qcom,src-sel = <0>;		/* QPNP_PIN_SEL_FUNC_CONSTANT */
+		qcom,ain-route = <3>;		/* QPNP_PIN_AIN_AMUX_CH8 */
+		qcom,master-en = <1>;		/* Enable MPP */
+	};
+};
+
+&pm8916_gpios {
+	gpio@c000 { /* GPIO 1 */
+		/* VH_ON */
+		qcom,mode = <1>; /* QPNP_PIN_MODE_DIG_OUT */
+		qcom,invert = <0>; /* QPNP_PIN_INVERT_DISABLE */
+		qcom,src-sel = <0>; /* QPNP_PIN_SEL_FUNC_CONSTANT */
+		qcom,output-type = <0>; /* QPNP_PIN_OUT_BUF_CMOS */
+		qcom,out-strength = <1>; /* QPNP_PIN_OUT_STRENGTH_LOW */
+		qcom,pull = <5>; /* QPNP_PIN_PULL_NO */
+		qcom,vin-sel = <3>; /* QPNP_PIN_VIN3 */
+		qcom,master-en = <1>; /* Enable GPIO */
+	};
+
+	gpio@c100 { /* GPIO 2 */
+		/* OLED_RST_N */
+		qcom,mode = <1>; /* QPNP_PIN_MODE_DIG_OUT */
+		qcom,invert = <0>; /* QPNP_PIN_INVERT_DISABLE */
+		qcom,src-sel = <0>; /* QPNP_PIN_SEL_FUNC_CONSTANT */
+		qcom,output-type = <0>; /* QPNP_PIN_OUT_BUF_CMOS */
+		qcom,out-strength = <1>; /* QPNP_PIN_OUT_STRENGTH_LOW */
+		qcom,pull = <5>; /* QPNP_PIN_PULL_NO */
+		qcom,vin-sel = <3>; /* QPNP_PIN_VIN3 */
+		qcom,master-en = <1>; /* Enable GPIO */
+	};
+
+	gpio@c200 { /* GPIO 3 */
+		/* External regulator control for WTR */
+		status = "disabled";
+	};
+
+	gpio@c300 { /* GPIO 4 */
+		/* VTPS_LDO_EN */
+		status = "ok";
+	};
+};
+
+&smb1357_otg_vreg {
+	usb-pullup-supply = <&pm8916_l13>;
+};
