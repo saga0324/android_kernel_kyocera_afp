@@ -1,6 +1,7 @@
 # Android Kernel Source for KYOCERA Android Feature Phone  
 
-Collection of Android Kernel Source for KYOCERA Android Feature Phone   
+Collection of Android Kernel Source for KYOCERA Android Feature Phone
+Recommend Cross Compiler and version:arm-eabi-4.8-google(gcc version 4.8 (GCC)) or arm-eabi-4.8-linaro(gcc version 4.8.5 (Linaro GCC 4.8-2015.06))
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
