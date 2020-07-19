@@ -1,0 +1,28 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "./module/pm/bms/msm8909-NATSUME-common-batterydata.dtsi"
+#include "./module/pm/bms/msm8909-NATSUME-common-bms.dtsi"
+#include "./module/pm/charger/msm8909-NATSUME-common-charger.dtsi"
+#include "./module/pm/gpio/msm8909-NATSUME-common-gpio.dtsi"
+#include "./module/pm/hkadc/msm8909-NATSUME-common-hkadc.dtsi"
+#include "./module/pm/pmic/msm8909-NATSUME-common-pmic.dtsi"
+#include "./module/pm/regulator/msm8909-NATSUME-common-regulator.dtsi"
+#include "./module/thermal/msm8909-NATSUME-common-thermal.dtsi"
+#include "./module/uart/msm8909-NATSUME-common-uart.dtsi"
+#include "./module/flashdriver/sd/msm8909-NATSUME-common-sd.dtsi"
+#include "./module/audio/msm8909-NATSUME-common-audio.dtsi"
+#include "./module/bsp/uninitram/msm8909-NATSUME-common-ram.dtsi"
+#include "./module/flashdriver/emmc/msm8909-NATSUME-common-emmc.dtsi"
+

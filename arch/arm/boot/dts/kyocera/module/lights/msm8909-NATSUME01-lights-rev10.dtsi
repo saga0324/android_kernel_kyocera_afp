@@ -1,0 +1,46 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	i2c@78b9000 { /* BLSP1 QUP5 */
+		/delete-node/ lv5216@74;
+
+		leds-oem-bd6098@76 {
+			compatible = "leds-oem-bd6098";
+			reg = <0x76>;
+			kc,reset-gpio = <&msm_gpio 0 0x00>;
+			kc,reset-delay = <100 100>;
+//			kc,keyled-gpio = <&msm_gpio 8 0x00>;
+//			use-mdm-led;
+			use-alarm-blink;
+			lcd_backlight {
+				label = "mled";
+				//linux,name = "backlightinfo";
+				linux,name = "lcd-backlight";
+			};
+			rgb {
+				label = "rgb";
+				linux,name = "ledinfo";
+			};
+			mobile-light {
+				label = "cled";
+				linux,name = "mobilelightinfo";
+			};
+			button-backlight {
+				label = "keyled";
+				linux,name = "button-backlight";
+			};
+		};
+	};
+};

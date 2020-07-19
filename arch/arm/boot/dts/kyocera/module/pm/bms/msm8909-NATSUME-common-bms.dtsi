@@ -1,0 +1,31 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm8916_bms {
+	qcom,v-cutoff-uv = <3400000>;
+	qcom,max-voltage-uv = <4320000>;
+	qcom,r-conn-mohm = <0>;
+	qcom,shutdown-soc-valid-limit = <100>;
+	qcom,low-soc-calculate-soc-threshold = <15>;
+	qcom,low-voltage-threshold = <3450000>;
+	qcom,low-voltage-calculate-soc-ms = <1000>;
+	qcom,low-soc-calculate-soc-ms = <5000>;
+	qcom,calculate-soc-ms = <20000>;
+	qcom,volatge-soc-timeout-ms = <60000>;
+	qcom,s2-fifo-length = <5>;
+	qcom,s3-ocv-tolerence-uv = <3600>;
+	qcom,low-soc-fifo-length = <2>;
+
+	/delete-property/ qcom,report-charger-eoc;
+};

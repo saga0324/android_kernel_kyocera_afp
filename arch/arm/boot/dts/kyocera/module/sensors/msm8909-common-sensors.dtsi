@@ -1,0 +1,174 @@
+/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2018 KYOCERA Corporation
+ */
+
+&soc {
+	sensor_power {
+		compatible = "kc,sensor-power-driver";
+//		sens_sleep_clk-gpio = <&pm8909_gpios 2 0>;
+//		vsensor-gpio-ctrl;
+//		vsensor_18-supply = <&pm8909_l**>;
+		vsensor_18-gpio = <&msm_gpio 10 0>;
+		vsensor_18-power-wait-ms = <50>;
+		vsensor_18-voltage-min = <1800000>;
+		vsensor_18-voltage-max = <1800000>;
+		vsensor_18-load = <50000>;
+	};
+};
+
+&spi_3 {
+	sensor_micon {
+		status = "disabled";
+		compatible = "sensor_micon";
+		reg = <0>;
+		interrupt-parent = <&msm_gpio>;
+		interrupts = <30 0>;
+		spi-max-frequency = <3840000>;
+		pinctrl-names = "sensor_micon_default", "sensor_micon_active", "sensor_micon_sleep";
+		pinctrl-0 = <&micon_int_n_default &micon_brmp_default &micon_rst_n_default>;
+		pinctrl-1 = <&micon_int_n_active &micon_brmp_active &micon_rst_n_active>;
+		pinctrl-2 = <&micon_int_n_suspend &micon_brmp_suspend &micon_rst_n_suspend>;
+		LAPIS,rst-gpio = <&msm_gpio 32 0>;
+		LAPIS,brmp-gpio = <&msm_gpio 22 0>;
+		LAPIS,int-gpio = <&msm_gpio 112 0>;
+		//spi-cpol = <0>; /* SPI Mode 0 */
+		//spi-cpha = <0>; /* SPI Mode 0 */
+		spi-cs-high; /* CS Active Level High */
+		micon-acc-conv_axis = /bits/ 8 <0>;
+		micon-gyro-conv_axis = /bits/ 8 <0>;
+		micon-mag-conv_axis = /bits/ 8 <0>;
+		micon-timestamp-adjust-sensor = <1861716963>;
+		micon-timestamp-adjust-app = <3000111105>;
+		micon-timestamp-adjust-dailys = <3000111105>;
+		micon-mag-static_matrix = <0x2710 0x0 0x0 0x0 0x2710 0x0 0x0 0x0 0x2710>; /* 10000, 0, 0, 0, 10000, 0, 0, 0, 10000 */
+		micon-fw-version = <0x0E02000B>;
+	};
+};
+
+&msm_gpio {
+	/delete-node/ micon_brmp;
+	micon_brmp {
+		micon_brmp_default: micon_brmp_default {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+		micon_brmp_active: micon_brmp_active {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+		micon_brmp_suspend: micon_brmp_suspend {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+
+	/delete-node/ micon_rst_n;
+	micon_rst_n {
+		micon_rst_n_default: micon_rst_n_default {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio32";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+		micon_rst_n_active: micon_rst_n_active {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio32";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+		micon_rst_n_suspend: micon_rst_n_suspend {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio32";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+	};
+
+	/delete-node/ micon_int_n;
+	micon_int_n {
+		micon_int_n_default: micon_int_n_default {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+		micon_int_n_active: micon_int_n_active {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+		micon_int_n_suspend: micon_int_n_suspend {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+	};
+};

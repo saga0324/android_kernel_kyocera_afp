@@ -1,0 +1,77 @@
+/* Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2018 KYOCERA Corporation
+ */
+
+&soc {
+	dtvtuner_pm {
+		compatible = "dtvtuner_pm";
+		cell-index = <0>;
+		gpios = <&msm_gpio 37 0>;  /* DTV_LDO_EN */
+		gpio-names = "DTV_LDO_EN";
+		gpios-func = <0>;
+		pinctrl-names = "dtvtuner_inactive", "dtvtuner_ldo_active", "dtvtuner_ldo_sleep";
+		pinctrl-0 = <&dtv_ldo_en_default>;
+		pinctrl-1 = <&dtv_ldo_en_active>;
+		pinctrl-2 = <&dtv_ldo_en_suspend>;
+	};
+	msm_gpio: pinctrl@1000000 {
+		dtv_ldo_en_default: dtv_ldo_en_default {
+			mux {
+				pins = "gpio37";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio37";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+		dtv_ldo_en_active: dtv_ldo_en_active {
+			mux {
+				pins = "gpio37";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio37";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+		dtv_ldo_en_suspend: dtv_ldo_en_suspend {
+			mux {
+				pins = "gpio37";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio37";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+	};
+};
+&spi_3 {
+	status = "ok";
+	spidev {
+		compatible = "spidev";
+		reg = <1>;
+		spi-max-frequency = <12500000>;
+		spi-cpol = <0>; /* SPI Mode 0 */
+		spi-cpha = <0>; /* SPI Mode 0 */
+	};
+};

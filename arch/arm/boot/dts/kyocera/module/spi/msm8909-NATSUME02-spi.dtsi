@@ -1,0 +1,112 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&msm_gpio {
+    /delete-node/ spi6;
+    spi6 {
+        spi6_default: spi6_default {
+            mux {
+                pins = "gpio8", "gpio11";
+                function = "blsp_spi6";
+            };
+            config {
+                pins = "gpio8", "gpio11";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+        spi6_sleep: spi6_sleep {
+            mux {
+                pins = "gpio8", "gpio11";
+                function = "gpio";
+            };
+            config {
+                pins = "gpio8", "gpio11";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+                output-low;
+            };
+        };
+        spi6_cs0_active: spi6_cs0_active {
+            mux {
+                pins = "gpio10";
+                function = "blsp_spi6";
+            };
+            config {
+                pins = "gpio10";
+                drive-strength = <2>;
+                bias-disable;
+            };
+        };
+        spi6_cs0_sleep: spi6_cs0_sleep {
+            mux {
+                pins = "gpio10";
+                function = "gpio";
+            };
+            config {
+                pins = "gpio10";
+                drive-strength = <2>;
+                bias-disable;
+                output-high;
+            };
+        };
+    };
+};
+
+/ {
+    aliases {
+        spi6 = &spi_6;
+    };
+};
+
+&spi_0 {
+    status = "disabled";
+};
+
+&spi_2 {
+    status = "disabled";
+};
+
+&spi_4 {
+    status = "disabled";
+};
+
+&soc {
+    spi_6: spi@78ba000 { /* BLSP1 QUP6 */
+        compatible = "qcom,spi-qup-v2";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        reg-names = "spi_physical", "spi_bam_physical";
+        reg = <0x78ba000 0x600>,
+              <0x7884000 0x23000>;
+        interrupt-names = "spi_irq", "spi_bam_irq";
+        interrupts = <0 100 0>, <0 238 0>;
+        spi-max-frequency = <19200000>;
+        pinctrl-names = "spi_default", "spi_sleep";
+        pinctrl-0 = <&spi6_default &spi6_cs0_active>;
+        pinctrl-1 = <&spi6_sleep &spi6_cs0_sleep>;
+        clocks = <&clock_gcc clk_gcc_blsp1_ahb_clk>,
+        <&clock_gcc clk_gcc_blsp1_qup6_spi_apps_clk>;
+        clock-names = "iface_clk", "core_clk";
+        qcom,infinite-mode = <0>;
+        qcom,use-bam;
+        qcom,use-pinctrl;
+        qcom,ver-reg-exists;
+        qcom,bam-consumer-pipe-index = <14>;
+        qcom,bam-producer-pipe-index = <15>;
+        qcom,master-id = <86>;
+    };
+};
+
+

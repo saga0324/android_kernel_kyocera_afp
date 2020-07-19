@@ -1,0 +1,90 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&msm_gpio{
+        ir_uart_tx {
+                ir_uart_tx_default: ir_uart_tx_default {
+                        mux {
+                            pins = "gpio20";
+                            function = "gpio";
+                        };
+                        config {
+                            pins = "gpio20";
+                            drive-strength = <2>;
+                            bias-pull-down;
+                            output-low;
+                        };
+                };
+                ir_uart_tx_active: ir_uart_tx_active {
+                        mux {
+                                pins = "gpio20";
+                                function = "blsp_uart2";
+                        };
+                        config {
+                                pins = "gpio20";
+                                drive-strength = <2>;
+                                bias-disable;
+                                output-low;
+                        };
+                };
+                ir_uart_tx_suspend: ir_uart_tx_suspend {
+                        mux {
+                            pins = "gpio20";
+                            function = "gpio";
+                        };
+                        config {
+                            pins = "gpio20";
+                            drive-strength = <2>;
+                            bias-pull-down;
+                            output-low;
+                        };
+                };
+
+        };
+        ir_uart_rx {
+                ir_uart_rx_default: ir_uart_rx_default {
+                        mux {
+                            pins = "gpio21";
+                            function = "gpio";
+                        };
+                        config {
+                            pins = "gpio21";
+                            drive-strength = <2>;
+                            bias-disable;
+                        };
+                };
+                ir_uart_rx_active: ir_uart_rx_active {
+                        mux {
+                                pins = "gpio21";
+                                function = "blsp_uart2";
+                        };
+                        config {
+                                pins = "gpio21";
+                                drive-strength = <2>;
+                                bias-disable;
+                        };
+                };
+                ir_uart_rx_suspend: ir_uart_rx_suspend {
+                        mux {
+                            pins = "gpio21";
+                            function = "gpio";
+                        };
+                        config {
+                            pins = "gpio21";
+                            drive-strength = <2>;
+                            bias-disable;
+                        };
+                };
+        };
+};

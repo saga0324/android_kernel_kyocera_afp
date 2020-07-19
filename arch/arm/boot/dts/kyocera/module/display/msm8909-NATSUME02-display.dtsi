@@ -1,0 +1,114 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "dsi-panel-kc-sitr-qvga-cmd.dtsi"
+
+&soc {
+	mdss_dsi: qcom,mdss_dsi@0{
+		vdda-supply = <&pm8916_l2>;
+		vddio-supply = <&pm8916_l5>;
+		mipi_vdd-supply = <&pm8916_l16>;
+
+		qcom,ctrl-supply-entries {
+			qcom,ctrl-supply-entry@0 {
+				reg = <0>;
+				qcom,supply-name = "vdda";
+				qcom,supply-min-voltage = <1200000>;
+				qcom,supply-max-voltage = <1200000>;
+				qcom,supply-enable-load = <100000>;
+				qcom,supply-disable-load = <100>;
+				qcom,supply-post-on-sleep = <5>;
+			};
+		};
+		
+		mdss_dsi0: qcom,mdss_dsi_ctrl0@1ac8000 {
+			mipi_vdd-supply = <&pm8916_l16>;
+			vdd-supply = <&pm8916_l17>;
+		};
+	};
+
+	dsi_panel_pwr_supply: dsi_panel_pwr_supply{
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <100000>;
+			qcom,supply-disable-load = <100>;
+			qcom,supply-post-on-sleep = <10>;
+		};
+
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vdd";
+//			qcom,supply-min-voltage = <2850000>;
+//			qcom,supply-max-voltage = <2850000>;
+			qcom,supply-min-voltage = <2800000>;
+			qcom,supply-max-voltage = <2800000>;
+			qcom,supply-enable-load = <100000>;
+			qcom,supply-disable-load = <100>;
+			qcom,supply-post-on-sleep = <10>;
+		};
+	};
+
+
+	qcom,mdss_dsi_pll@1ac8300 {
+		vddio-supply = <&pm8916_l6>;
+	};
+	
+	i2c@78b9000 { /* BLSP1 QUP5 */
+		/delete-node/ synaptics@20;
+	};
+
+};
+
+
+
+/delete-node/ &dsi_hx8394d_720_vid;
+/delete-node/ &dsi_hx8394d_qhd_vid;
+
+
+&dsi_kc_sitr_qvga_vid {
+//	qcom,cont-splash-enabled;
+	kc,led-type = "cat4004b";
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_kc_sitr_qvga_vid>;
+	
+	/*
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	//pinctrl-names = "mdss_default", "mdss_sleep", "lcd_id_active", "lcd_id_suspend";
+	pinctrl-0 = <&lcd_te_active>;
+	pinctrl-1 = <&lcd_te_suspend>;
+	//pinctrl-2 = <&lcd_id_active>;
+	//pinctrl-3 = <&lcd_id_suspend>;
+	
+	*/
+	/delete-property/ pinctrl-names;
+	/delete-property/ pinctrl-0;
+	/delete-property/ pinctrl-1;
+
+	qcom,platform-te-gpio = <&msm_gpio 24 0>;
+	qcom,platform-reset-gpio = <&msm_gpio 30 0>;
+	kc,platform-vmipi_12_en-gpio = <&msm_gpio 93 0>;
+	kc,platform-refclk-gpio = <&msm_gpio 13 0>;
+	kc,platform-ic-reset-gpio = <&msm_gpio 51 0>;
+};
+
+&msm_gpio {
+	/delete-node/ pmx_mdss;
+	/delete-node/ pmx_mdss_te;
+};

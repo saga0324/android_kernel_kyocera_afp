@@ -1,0 +1,425 @@
+/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ */
+
+#include "msm8909-common-sensors.dtsi"
+
+//&soc {
+//	/delete-node/ sensor_power;
+//};
+
+&spi_3 {
+	status = "ok";
+	/delete-node/ sensor_micon;
+	qlspi_eoss3@0 {
+		compatible = "qlspi,qlspi_eoss3";
+		reg = <0>;
+		interrupt-parent = <&msm_gpio>;
+		interrupts = <30 0>;
+		spi-max-frequency = <19200000>;
+		spi-min-frequency = <640000>;
+		pinctrl-names = "sensor_micon_default", "sensor_micon_active", "sensor_micon_sleep",
+						"sensor_micon_spi_cs_active", "sensor_micon_spi_cs_suspend", "sensor_micon_spi_cs_reset",
+						"sensor_micon_rst_active", "sensor_micon_rst_suspend",
+						"sensor_micon_vmicon_11_active","sensor_micon_vmicon_11_suspend",
+						"sensor_micon_vsensor_18_active","sensor_micon_vsensor_18_suspend",
+						"sensor_micon_vmicon_18_active","sensor_micon_vmicon_18_suspend",
+						"spi_default", "spi_sleep", "sensor_micon_spi_cs_request";
+		pinctrl-0 = <&micon_int_n_default &micon_int_out_default &micon_rst_n_default>;
+		pinctrl-1 = <&micon_int_n_active &micon_int_out_active &micon_rst_n_active>;
+		pinctrl-2 = <&micon_int_n_suspend &micon_int_out_suspend &micon_rst_n_suspend>;
+		pinctrl-3 = <&sensor_micon_spi_cs_active>;
+		pinctrl-4 = <&sensor_micon_spi_cs_suspend>;
+		pinctrl-5 = <&sensor_micon_spi_cs_reset>;
+		pinctrl-6 = <&sensor_micon_rst_active>;
+		pinctrl-7 = <&sensor_micon_rst_suspend>;
+		pinctrl-8 = <&sensor_micon_vmicon_11_active>;
+		pinctrl-9 = <&sensor_micon_vmicon_11_suspend>;
+		pinctrl-10 = <&sensor_micon_vsensor_18_active>;
+		pinctrl-11 = <&sensor_micon_vsensor_18_suspend>;
+		pinctrl-12 = <&sensor_micon_vmicon_18_active>;
+		pinctrl-13 = <&sensor_micon_vmicon_18_suspend>;
+/*
+		pinctrl-14 = <&spi_micon_mosi_active
+				 	  &spi_micon_miso_active
+				 	  &spi_micon_clk_active>;
+		pinctrl-15 = <&spi_micon_mosi_suspend
+				 	  &spi_micon_miso_suspend
+				 	  &spi_micon_clk_suspend>;
+		pinctrl-16 = <&sensor_micon_spi_cs_request>;
+*/
+		qlspi,rst-gpio = <&msm_gpio 32 0>;
+		qlspi,irq-out-gpio = <&msm_gpio 22 0>;
+		qlspi,irq-gpio = <&msm_gpio 112 0>;
+		qlspi,cs-gpio = <&msm_gpio 2 0>;
+		//qlspi,fabrdy-gpio = <&msm_gpio 7 0>;
+
+		spi-cs-low; /* CS Active Level LOW */
+		micon-acc-conv_axis = /bits/ 8 <4>;
+		micon-gyro-conv_axis = /bits/ 8 <4>;
+		micon-mag-conv_axis = /bits/ 8 <4>;
+		micon-mag-static_matrix = <0x24A4 0x067C 0x0028 0x04C4 0x2210 0x0 0x055A 0xFBAA 0x2846>; /* 9380, 1660, 40, 1220, 8720, 0, 1370, -1110, 10310 */
+
+
+
+		vmicon_11 {
+			ctrl = <1>; /* 1:pinctrl, 2:pm ldo, 3:pm gpio*/
+			gpio = <&msm_gpio 110 0>;
+		};
+		vmicon_18 {
+			ctrl = <1>; /* 1:pinctrl, 2:pm ldo, 3:pm gpio*/
+			gpio = <&msm_gpio 51 0>;
+		};
+		sens_sleep_clk {
+			ctrl = <3>; /* 1:pinctrl, 2:pm ldo, 3:pm gpio*/
+			gpio = <&pm8916_gpios 4 0>;
+		};
+		vsensor_18 {
+			ctrl = <1>; /* 1:pinctrl, 2:pm ldo, 3:pm gpio*/
+			gpio = <&msm_gpio 10 0>;
+		};
+	};
+};
+
+&msm_gpio {
+	/delete-node/ micon_brmp;
+	micon_int_out {
+		micon_int_out_default: micon_int_out_default {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-disable;
+				ouput-low;
+			};
+		};
+		micon_int_out_active: micon_int_out_active {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-disable;
+				ouput-low;
+			};
+		};
+		micon_int_out_suspend: micon_int_out_suspend {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-disable;
+				ouput-low;
+			};
+		};
+	};
+
+	sensor_micon_spi_cs {
+		sensor_micon_spi_cs_active: sensor_micon_spi_cs_active {
+			mux {
+				pins = "gpio2";
+				function = "blsp_spi3";
+			};
+			config {
+				pins = "gpio2";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+		sensor_micon_spi_cs_suspend: sensor_micon_spi_cs_suspend {
+			mux {
+				pins = "gpio2";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio2";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+		sensor_micon_spi_cs_reset: sensor_micon_spi_cs_reset {
+			mux {
+				pins = "gpio2";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio2";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+	};
+	sensor_micon_rst {
+		sensor_micon_rst_active: sensor_micon_rst_active {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio32";
+				drive-strength = <2>;
+				bias-disable;
+				output-high;
+			};
+		};
+		sensor_micon_rst_suspend: sensor_micon_rst_suspend {
+			mux {
+				pins = "gpio32";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio32";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+	};
+	/delete-node/ micon_int_n;
+	micon_int_n {
+		micon_int_n_default: micon_int_n_default {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+		micon_int_n_active: micon_int_n_active {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+		micon_int_n_suspend: micon_int_n_suspend {
+			mux {
+				pins = "gpio112";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio112";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+	sensor_micon_vmicon_11 {
+		sensor_micon_vmicon_11_active: sensor_micon_vmicon_11_active {
+			mux {
+				pins = "gpio110";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio110";
+				device-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+		sensor_micon_vmicon_11_suspend: sensor_micon_vmicon_11_suspend {
+			mux {
+				pins = "gpio110";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio110";
+				device-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+	};
+	sensor_micon_vsensor_18 {
+		sensor_micon_vsensor_18_active: sensor_micon_vsensor_18_active {
+			mux {
+				pins = "gpio10";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio10";
+				device-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+		sensor_micon_vsensor_18_suspend: sensor_micon_vsensor_18_suspend {
+			mux {
+				pins = "gpio10";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio10";
+				device-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+	};
+	sensor_micon_vmicon_18 {
+		sensor_micon_vmicon_18_active: sensor_micon_vmicon_18_active {
+			mux {
+				pins = "gpio51";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio51";
+				device-strength = <2>;
+				output-high;
+				bias-pull-up;
+			};
+		};
+		sensor_micon_vmicon_18_suspend: sensor_micon_vmicon_18_suspend {
+			mux {
+				pins = "gpio51";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio51";
+				device-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+	};
+
+	/*spi setting*/
+//	spi_micon_mosi {
+//		status = "disabled";
+//		spi_micon_mosi_default: spi_micon_mosi_default {
+//			mux {
+//				pins = "gpio15";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio15";
+//				bias-disable;
+//				output-low;
+//			};
+//		};
+//		spi_micon_mosi_active: spi_micon_mosi_active {
+//			mux {
+//				pins = "gpio15";
+//				pinmux = "blsp_spi4";
+//			};
+//			config {
+//				pins = "gpio15";
+//				output-low;
+//				bias-disable;
+//			};
+//		};
+//		spi_micon_mosi_suspend: spi_micon_mosi_suspend {
+//			mux {
+//				pins = "gpio15";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio15";
+//				bias-disable;
+//				output-low;
+//			};
+//		};
+//	};
+//	spi_micon_miso {
+//		status = "disabled";
+//		spi_micon_miso_default: spi_micon_miso_default {
+//			mux {
+//				pins = "gpio13";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio13";
+//				bias-pull-down;
+//			};
+//		};
+//		spi_micon_miso_active: spi_micon_miso_active {
+//			mux {
+//				pins = "gpio13";
+//				function = "blsp_spi4";
+//			};
+//			config {
+//				pins = "gpio13";
+//				input-enable;
+//				bias-pull-down;
+//			};
+//		};
+//		spi_micon_miso_suspend: spi_micon_miso_suspend {
+//			mux {
+//				pins = "gpio13";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio13";
+//				bias-pull-down;
+//			};
+//		};
+//	};
+//
+//	spi_micon_clk {
+//		status = "disabled";
+//		spi_micon_clk_default: spi_micon_clk_default {
+//			pins_cmd_dat {
+//				pins = "gpio16";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio16";
+//				bias-disable;
+//				output-low;
+//			};
+//		};
+//		spi_micon_clk_active: spi_micon_clk_active {
+//			mux {
+//				pins = "gpio16";
+//				function = "blsp_spi4";
+//			};
+//			config {
+//				pins = "gpio16";
+//				bias-disable;
+//				output-low;
+//			};
+//		};
+//		spi_micon_clk_suspend: spi_micon_clk_suspend {
+//			pins_cmd_dat {
+//				pins = "gpio16";
+//				function = "gpio";
+//			};
+//			config {
+//				pins = "gpio16";
+//				bias-disable;
+//				output-low;
+//			};
+//		};
+//	};
+};
+

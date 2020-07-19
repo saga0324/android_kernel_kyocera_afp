@@ -1,0 +1,5 @@
+comment "DTV Tuner Power Management Driver"
+
+config DTVTUNER_PM
+	bool "DTV Tuner Power Mangement Driver"
+	default y

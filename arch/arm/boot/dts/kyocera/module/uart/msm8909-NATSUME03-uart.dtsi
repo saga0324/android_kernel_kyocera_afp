@@ -1,0 +1,44 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * Copyright (c) 2015-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "./msm8909-NATSUME03-uart-pinctrl.dtsi"
+
+/ {
+	aliases {
+		serial9 = &blsp1_uart2;   // This device will be called ttyHSL9
+	};
+};
+
+&blsp1_uart2 {
+	compatible = "qcom,msm-lsuart-v14";
+	reg = <0x78b0000 0x200>;
+	interrupts = <0 108 0>;
+	status = "ok";
+	qcom,config-gpio = <1>;
+	qcom,msm-bus,name = "irda_uart9";
+	qcom,msm-bus,num-cases = <2>;
+	qcom,msm-bus,num-paths = <1>;
+	qcom,msm-bus,vectors-KBps =
+				<86 512 0 0>,
+				<86 512 500 800>;
+	pinctrl-names = "uart9_inactive", "uart9_active", "uart9_sleep";
+	pinctrl-0 = <&ir_uart_tx_default &ir_uart_rx_default>;
+	pinctrl-1 = <&ir_uart_tx_active &ir_uart_rx_active>;
+	pinctrl-2 = <&ir_uart_tx_suspend &ir_uart_rx_suspend>;
+	clocks = <&clock_gcc clk_gcc_blsp1_uart2_apps_clk>,
+	<&clock_gcc clk_gcc_blsp1_ahb_clk>;
+	clock-names = "core_clk", "iface_clk";
+};

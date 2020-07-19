@@ -1,0 +1,51 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "dsi-panel-kc-st-slcd-spi.dtsi"
+
+&soc {
+	disp_ext_sub {
+		kc,disp-ext-sub-rst-gpio = <&msm_gpio 27 0>;
+		kc,disp-ext-sub-spi-rs-gpio = <&msm_gpio 12 0>;
+		
+		vddio-supply = <&pm8916_l5>;
+    	vdd-supply = <&pm8916_l17>;
+    	vreg-supply = <&pm8916_l6>;
+    
+		qcom,sub-panel-supply-entries {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			qcom,supply-entry@0 {
+				reg = <0>;
+				qcom,supply-name = "vddio";
+				qcom,supply-min-voltage = <1800000>;
+				qcom,supply-max-voltage = <1800000>;
+				qcom,supply-enable-load = <1000>;
+				qcom,supply-disable-load = <20>;
+			};
+			qcom,supply-entry@1 {
+				reg = <1>;
+				qcom,supply-name = "vdd";
+//				qcom,supply-min-voltage = <2850000>;
+//				qcom,supply-max-voltage = <2850000>;
+				qcom,supply-min-voltage = <2800000>;
+				qcom,supply-max-voltage = <2800000>;
+				qcom,supply-enable-load = <2000>;
+				qcom,supply-disable-load = <20>;
+			};
+		};
+	};
+
+};

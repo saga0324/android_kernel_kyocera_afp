@@ -1,0 +1,116 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&msm_gpio {
+    /delete-node/ pmx_i2c_1;
+    pmx_i2c_1 {
+        i2c_1_active: i2c_1_active {
+            mux {
+                pins = "gpio6", "gpio7";
+                function = "blsp_i2c1";
+            };
+            config {
+                pins = "gpio6", "gpio7";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+        i2c_1_sleep: i2c_1_sleep {
+            mux {
+                pins = "gpio6", "gpio7";
+                function = "blsp_i2c1";
+            };
+            config {
+                pins = "gpio6", "gpio7";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+    };
+
+    /delete-node/ pmx_i2c_4;
+    pmx_i2c_4 {
+        i2c_4_active: i2c_4_active {
+            mux {
+                pins = "gpio14", "gpio15";
+                function = "blsp_i2c4";
+            };
+            config {
+                pins = "gpio14", "gpio15";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+        i2c_4_sleep: i2c_4_sleep {
+            mux {
+                pins = "gpio14", "gpio15";
+                function = "blsp_i2c4";
+            };
+            config {
+                pins = "gpio14", "gpio15";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+    };
+
+    /delete-node/ pmx_i2c_5;
+    pmx_i2c_5 {
+        i2c_5_active: i2c_5_active {
+            mux {
+                pins = "gpio19", "gpio18";
+                function = "blsp_i2c5";
+            };
+            config {
+                pins = "gpio19", "gpio18";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+        i2c_5_sleep: i2c_5_sleep {
+            mux {
+                pins = "gpio19", "gpio18";
+                function = "blsp_i2c5";
+            };
+            config {
+                pins = "gpio19", "gpio18";
+                drive-strength = <2>; /* 2 MA */
+                bias-disable; /* No PULL */
+            };
+        };
+    };
+};
+
+&i2c_1 {
+    qcom,clk-freq-out = <376000>;
+    status = "ok";
+};
+
+&i2c_2 {
+    status = "disabled";
+};
+
+&i2c_3 {
+    status = "disabled";
+};
+
+&i2c_4 {
+    qcom,clk-freq-out = <340000>;
+    status = "ok";
+};
+
+&i2c_5 {
+    qcom,clk-freq-out = <340000>;
+    status = "ok";
+};

@@ -1,0 +1,196 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&msm_gpio {
+	hs_det_en {
+		hs_det_en_default: hs_det_en_default {
+			mux {
+				pins = "gpio27";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio27";
+				drive-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+		hs_det_en_active: hs_det_en_active {
+			mux {
+				pins = "gpio27";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio27";
+				drive-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+		hs_det_en_suspend: hs_det_en_suspend {
+			mux {
+				pins = "gpio27";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio27";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	usbc_irq_n {
+		usbc_irq_n_default: usbc_irq_n_default {
+			mux {
+				pins = "gpio49";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio49";
+				drive-strength = <2>;
+				input-debounce = <0>;
+				bias-pull-up;
+			};
+		};
+		usbc_irq_n_active: usbc_irq_n_active {
+			mux {
+				pins = "gpio49";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio49";
+				drive-strength = <2>;
+				input-debounce = <0>;
+				bias-pull-up;
+			};
+		};
+		usbc_irq_n_suspend: usbc_irq_n_suspend {
+			mux {
+				pins = "gpio49";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio49";
+				drive-strength = <2>;
+				input-debounce = <0>;
+				bias-pull-up;
+			};
+		};
+	};
+
+	usbsw_pon {
+		usbsw_pon_default: usbsw_pon_default {
+			mux {
+				pins = "gpio93";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio93";
+				drive-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+		usbsw_pon_active: usbsw_pon_active {
+			mux {
+				pins = "gpio93";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio93";
+				drive-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+		usbsw_pon_suspend: usbsw_pon_suspend {
+			mux {
+				pins = "gpio93";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio93";
+				drive-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+	};
+
+	usbc_en {
+		usbc_en_default: usbc_en_default {
+			mux {
+				pins = "gpio99";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio99";
+				drive-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+		usbc_en_active: usbc_en_active {
+			mux {
+				pins = "gpio99";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio99";
+				drive-strength = <2>;
+				output-low;
+				bias-disable;
+			};
+		};
+		usbc_en_suspend: usbc_en_suspend {
+			mux {
+				pins = "gpio99";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio99";
+				drive-strength = <2>;
+				output-high;
+				bias-disable;
+			};
+		};
+	};
+};
+
+&i2c_5 {
+	PI3A6386@41 {
+		status = "okay";
+		compatible = "kc,PI3A6386";
+		reg = <0x41>;
+		kc,swic_usbsw_pon-gpio = <&msm_gpio 93 0>;
+		kc,swic_hs_det-gpio = <&msm_gpio 27 0>;
+	};
+
+	pericom-type-c@1d {
+		compatible = "pericom,usb-type-c";
+		reg = <0x1d>;
+		vdd_io-supply = <&pm8916_l5>;
+		interrupt-parent = <&msm_gpio>;
+		interrupts = <49 2>;  /* TLMM 49, TRIGGER_FALLING */
+		pericom,enb-gpio = <&msm_gpio 99 0x0>;	/* active high */
+		pinctrl-names = "default";
+		pinctrl-0 = <&usbc_irq_n_default &usbc_en_default>;
+	};
+};
+
+&usb_otg {
+	qcom,hsusb-otg-mode = <1>; /* peripheral only mode */
+	qcom,hsusb-otg-phy-init-seq = <0x73 0x80 0x3F 0x81 0x33 0x82 0x33 0x83 0xffffffff>;
+};

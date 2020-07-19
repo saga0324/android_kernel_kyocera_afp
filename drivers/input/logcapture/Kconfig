@@ -1,0 +1,24 @@
+#
+# logcapture driver configuration
+#
+
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2016 KYOCERA Corporation
+#
+
+config LOGCAPTURE
+        bool "logcapture support"
+        default n
+        help
+          Say Y here if you want to support the logcapture.
+
+          If unsure, say N.
+
+config LOGCAPTURE_DEBUG
+        bool "logcapture support"
+        default n
+        help
+          Say Y here if you want to support the logcapture debug.
+
+          If unsure, say N.

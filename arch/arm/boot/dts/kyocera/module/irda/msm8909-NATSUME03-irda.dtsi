@@ -1,0 +1,62 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2018 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	irda_ctl {
+		compatible = "kc,irda_ctl";
+		kc,ir_pwdown = <&msm_gpio 50 0>;
+	};
+};
+
+&msm_gpio {
+	ir_pwdown {
+		ir_pwdown_default: ir_pwdown_default {
+			mux {
+				pins = "gpio50";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio50";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+		ir_pwdown_active: ir_pwdown_active {
+			mux {
+				pins = "gpio50";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio50";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+		ir_pwdown_suspend: ir_pwdown_suspend {
+			mux {
+				pins = "gpio50";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio50";
+				drive-strength = <2>;
+				bias-pull-down;
+				output-low;
+			};
+		};
+	};
+};
+

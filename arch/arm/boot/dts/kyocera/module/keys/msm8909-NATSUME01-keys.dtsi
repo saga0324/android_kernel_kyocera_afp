@@ -1,0 +1,42 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&spmi_bus {
+        qcom,pm8916@0 {
+                pm8916_pon: qcom,power-on@800 {
+                        /delete-node/ qcom,pon_2;
+                };
+        };
+};
+
+&soc {
+        /delete-node/ gpio_keys;
+
+        gpio_keys {
+                compatible = "gpio-keys";
+                input-name = "gpio-keys";
+
+                buzzer_key {
+                         label = "buzzer_key";
+                         gpios = <&msm_gpio 28 0x1>;
+                         linux,input-type = <5>;
+                         linux,code = <0x13>;
+                         gpio-key,wakeup;
+                         debounce-interval = <45>;
+                         on_chattering_num  = <1>;
+                         off_chattering_num = <1>;
+                };
+        };
+};
+

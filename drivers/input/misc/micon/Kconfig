@@ -1,0 +1,33 @@
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2019 KYOCERA Corporation
+#
+
+config QL_EOS_S3
+	tristate "support QuickLogic EOS S3"
+	default y
+	help
+	  If you say y here you get support for the microcontroler
+	  EOS S3 made by Quick Logic Inc.
+
+config LAPIS_ML630Q790
+	tristate "support LAPIS ML630Q790"
+	default n
+	help
+	  If you say y here you get support for the microcontroler
+	  ML630Q790 made by LAPIS Semiconductor.
+
+config MICON_MEAS_PERFORMANCE_LOG
+	bool "USE_KC_SNS_SENSORS_PERFORMANCE_MEASURE_LOG"
+	default n
+	help
+	  If you say y here you can measure the time of mainly process.
+	  This supports measurement of "sample1","sample2", and"model_file_loader".
+
+config USE_KC_MICON_PERFORMANCE_MEASURE_LOG
+	bool "USE_KC_MICON_PERFORMANCE_MEASURE_LOG"
+	default n
+	help
+	  Enable kc sensors debug log for MICON performance measure
+
+source "drivers/input/misc/micon/ql/Kconfig"

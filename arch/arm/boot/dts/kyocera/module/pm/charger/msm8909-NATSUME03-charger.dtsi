@@ -1,0 +1,90 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&pm8916_chg {
+	status = "ok";
+	qcom,charging-disabled;
+	qcom,use-external-charger;
+};
+
+&msm_gpio {
+	/delete-node/ smb_int_pin;
+
+	smb_int_pin {
+		smb_int_default: smb_int_default {
+			mux {
+				pins = "gpio58";
+				function ="smb_int";
+			};
+			config {
+				pins = "gpio58";
+				drive-strength = <2>;   /* 2 MA */
+				bias-disable;           /* NO PULL */
+			};
+		};
+	};
+};
+
+&soc {
+	i2c@78b8000 {
+		/delete-node/ smb358-charger@57;
+
+		smb358_otg_vreg: smb358-charger@57 {
+			compatible = "qcom,smb358-charger";
+			reg = <0x57>;
+			vdd-supply = <&pm8916_l5>;
+			interrupt-parent = <&msm_gpio>;
+			interrupts = <58 8>;
+			qcom,irq-gpio = <&msm_gpio 58 0x2008>;
+			pinctrl-names = "default";
+			qcom,bms-psy-name = "bms";
+			pinctrl-0 = <&smb_int_default>;
+			qcom,chg-vadc = <&pm8916_vadc>;
+			qcom,batt-id-vref-uv = <1800000>;
+			qcom,batt-id-rpullup-kohm = <220>;
+
+			qcom,float-voltage-mv = <4320>;
+			qcom,iterm-ma = <125>;
+			qcom,using-vbat-sns;
+			qcom,thermal-mitigation = <900 450 200 0>;
+			regulator-name = "smb358_otg_vreg";
+			qcom,cold-bat-decidegc = <20>;
+			qcom,cool-bat-decidegc = <120>;
+			qcom,warm-bat-decidegc = <420>;
+			qcom,hot-bat-decidegc = <500>;
+			qcom,bat-present-decidegc = <400>;
+			qcom,cool-bat-ma = <450>;
+			qcom,warm-bat-ma = <450>;
+			qcom,fastchg-current-max-ma = <900>;
+			qcom,recharge-mv = <200>;
+			qcom,cool-bat-mv = <4200>;
+			qcom,warm-bat-mv = <4200>;
+			qcom,soc-delay-worker-time = <15000>;
+			qcom,using-pmic-therm;
+			vcc-i2c-supply = <&pm8916_l5>;
+			qcom,chg-inhibit-disabled;
+			qcom,chg-adc_tm = <&pm8916_adc_tm>;
+
+			/*
+			 * Voltage at the time of battery deterioration
+			 */
+			oem,deterioration-vfloat-mv = <4200>;
+
+			/*
+			 * Battery care mode status
+			 */
+			oem,batt-care-mv = <4180>;
+		};
+	};
+};

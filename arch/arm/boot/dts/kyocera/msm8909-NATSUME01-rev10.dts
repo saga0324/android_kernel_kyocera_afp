@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ */
+
+/dts-v1/;
+
+#include "../qcom/msm8909-mtp.dtsi"
+#include "../qcom/msm8909-pm8916.dtsi"
+#include "../qcom/msm8909-pm8916-mtp.dtsi"
+
+#include "msm8909-NATSUME-common.dtsi"
+#include "msm8909-NATSUME01.dtsi"
+#include "./module/display/msm8909-NATSUME01-display-rev10.dtsi"
+#include "./module/lights/msm8909-NATSUME01-lights-rev10.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. MSM8909-PM8916 NATSUME01 rev10.";
+	compatible = "qcom,msm8909-mtp", "qcom,msm8909", "qcom,mtp", "kc,natsume01";
+	qcom,board-id = <0x100005 0x101>;
+};

@@ -1,0 +1,24 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "./module/spi/msm8909-NATSUME02-spi.dtsi"
+#include "./module/i2c/msm8909-NATSUME02-i2c.dtsi"
+#include "./module/pm/charger/msm8909-NATSUME02-charger.dtsi"
+#include "./module/pm/gpio/msm8909-NATSUME02-gpio.dtsi"
+#include "./module/pm/regulator/msm8909-NATSUME02-regulator.dtsi"
+
+#include "./module/display/msm8909-NATSUME02-display.dtsi"
+#include "./module/display/msm8909-NATSUME02-subdisplay.dtsi"
+#include "./module/lights/msm8909-NATSUME02-lights.dtsi"
+#include "./module/touchscreen/msm8909-NATSUME02-touch.dtsi"

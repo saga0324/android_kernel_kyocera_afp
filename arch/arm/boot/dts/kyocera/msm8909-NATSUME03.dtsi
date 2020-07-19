@@ -1,0 +1,32 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+#include "./module/display/msm8909-NATSUME03-display.dtsi"
+#include "./module/display/msm8909-NATSUME03-subdisplay.dtsi"
+#include "./module/lights/msm8909-NATSUME03-lights.dtsi"
+#include "./module/touchscreen/msm8909-NATSUME03-touch.dtsi"
+#include "./module/irda/msm8909-NATSUME03-irda.dtsi"
+#include "./module/usb/msm8909-NATSUME03-usb.dtsi"
+#include "./module/keys/msm8909-NATSUME03-keys.dtsi"
+#include "./module/keys/msm8909-NATSUME03-matrix.dtsi"
+#include "./module/i2c/msm8909-NATSUME03-i2c.dtsi"
+#include "./module/spi/msm8909-NATSUME03-spi.dtsi"
+#include "./module/dtv/msm8909-NATSUME03-dtv.dtsi"
+#include "./module/pm/charger/msm8909-NATSUME03-charger.dtsi"
+#include "./module/pm/gpio/msm8909-NATSUME03-gpio.dtsi"
+#include "./module/pm/regulator/msm8909-NATSUME03-regulator.dtsi"
+#include "./module/camera/msm8909-NATSUME03-camera.dtsi"
+#include "./module/uart/msm8909-NATSUME03-uart.dtsi"
+#include "./module/audio/msm8909-NATSUME03-audio.dtsi"
+#include "./module/sensors/msm8909-NATSUME03-sensors.dtsi"
+#include "./module/vibrator/msm8909-NATSUME03-vibrator.dtsi"

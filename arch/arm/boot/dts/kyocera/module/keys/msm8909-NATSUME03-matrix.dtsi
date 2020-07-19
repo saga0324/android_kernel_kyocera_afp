@@ -1,0 +1,112 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&msm_gpio {
+    ko_lines {
+        ko_active: ko_active {
+            mux {
+                pins = "gpio16", "gpio17", "gpio34", "gpio57", "gpio92", "gpio111", "gpio28", "gpio33", "gpio8", "gpio9";
+                function = "gpio";
+            };
+            config {
+                pins = "gpio16", "gpio17", "gpio34", "gpio57", "gpio92", "gpio111", "gpio28", "gpio33", "gpio8", "gpio9";
+                drive-strength = <2>;
+                output-low;
+                bias-disable;
+            };
+        };
+        ko_prescan: ko_prescan {
+            mux {
+                pins = "gpio16", "gpio17", "gpio34", "gpio57", "gpio92", "gpio111", "gpio28", "gpio33", "gpio8", "gpio9";
+                function = "gpio";
+            };
+            config {
+                pins = "gpio16", "gpio17", "gpio34", "gpio57", "gpio92", "gpio111", "gpio28", "gpio33", "gpio8", "gpio9";
+                drive-strength = <2>;
+                input-enable;
+                bias-pull-up;
+            };
+        };
+    };
+};
+
+&soc {
+    matrix_keypad: matrix_keypad@0 {
+        compatible = "gpio-matrix-keypad";
+        pinctrl-names = "matrix_keypad_active","matrix_keypad_prescan";
+        pinctrl-0 = <&ko_active>;
+        pinctrl-1 = <&ko_prescan>;
+        debounce-delay-ms = <25>;
+        col-scan-delay-us = <5>;
+        gpio-activelow;
+        linux,no-autorepeat;
+        linux,wakeup;
+
+        row-gpios = <
+            &msm_gpio 94 0
+            &msm_gpio 97 0
+            &msm_gpio 96 0
+            &msm_gpio 90 0
+            &msm_gpio 98 0
+            &msm_gpio 91 0
+        >;
+
+        col-gpios = <
+            &msm_gpio 16 0
+            &msm_gpio 17 0
+            &msm_gpio 34 0
+            &msm_gpio 57 0
+            &msm_gpio 92 0
+            &msm_gpio 111 0
+            &msm_gpio 28 0
+            &msm_gpio 33 0
+            &msm_gpio 8 0
+            &msm_gpio 9 0
+        >;
+
+        linux,keymap = <
+            0x00000002	/* KEY_1 [2] */
+            0x00010005	/* KEY_4 [5] */
+            0x00020008	/* KEY_7 [8] */
+            0x00030037	/* KEY_KPASTERISK [55]*/
+            0x0004003E	/* KEY_F4 [62] */
+            0x01000003	/* KEY_2 [3] */
+            0x01010006	/* KEY_5 [6] */
+            0x01020009	/* KEY_8 [9] */
+            0x0103000b	/* KEY_0 [11]*/
+            0x0104003d	/* KEY_F3 [61] */
+            0x02000004	/* KEY_3 [4] */
+            0x02010007	/* KEY_6 [7] */
+            0x0202000a	/* KEY_9 [10] */
+            0x020300FD	/* KEY_SHARP [253] */
+            0x02040163	/* KEY_CLEAR [0x163] */
+            0x0305001C	/* KEY_ENTER [28] */
+            0x03060067	/* KEY_UP [103] */
+            0x0307006A	/* KEY_RIGHT [106] */
+            0x030800C4	/* KEY_RU [196] */
+            0x030900C5	/* KEY_LU [197] */
+            0x04060069	/* KEY_LEFT [105] */
+            0x0407006C	/* KEY_DOWN [108] */
+            0x040800C6	/* KEY_LD [198] */
+            0x040900C7	/* KEY_RD [199] */
+            0x05000041	/* KEY_F7 [65] */
+            0x0501003F	/* KEY_F5 [63] */
+            0x05020040	/* KEY_F6 [64] */
+            0x0503003B	/* KEY_F1 [59] */
+            0x050400E7	/* KEY_SEND [231] */
+            0x0505003C	/* KEY_F2 [60] */
+        >;
+    };
+};
+

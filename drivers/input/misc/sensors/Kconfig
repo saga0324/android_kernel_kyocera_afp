@@ -1,0 +1,426 @@
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2012 KYOCERA Corporation
+# (C) 2013 KYOCERA Corporation
+# (C) 2014 KYOCERA Corporation
+# (C) 2015 KYOCERA Corporation
+# (C) 2016 KYOCERA Corporation
+# (C) 2017 KYOCERA Corporation
+# (C) 2018 KYOCERA Corporation
+# (C) 2019 KYOCERA Corporation
+#
+#
+# Copyright (c) 2010 Yamaha Corporation
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+# USA.
+#
+
+config SENSOR_COMMON
+	tristate "Sensor Common"
+	default y
+
+config INPUT_SENSOR_ML630Q790
+	depends on LAPIS_ML630Q790 && INPUT_MISC_SENSOR_MICON
+	tristate "ML610Q793 MICON"
+	default y
+	help
+		Support sensor driver with ml630q790 micon.
+		You shold not change this config.
+		If you want to change, you should change
+		the config of "LAPIS_ML630Q790" written in
+		../micon/Kconfig
+
+config INPUT_SENSOR_EOSS3
+	depends on QL_EOS_S3 && INPUT_MISC_SENSOR_MICON
+	tristate "EOSS3 MICON"
+	default y
+	help
+		Support sensor driver with eos s3 micon.
+		You shold not change this config.
+		If you want to change, you should change
+		the config of "QL_EOS_S3" written in
+		../micon/Kconfig
+
+config INPUT_SENSOR_EOSS3_MEM_REDUCE_VER1
+	depends on QL_EOS_S3 && INPUT_MISC_SENSOR_MICON
+	tristate "EOSS3 MICON MEM REDUCE"
+	default n
+	help
+		This Model uses QL_EOS_S3 reduced memory to 384 KB.
+
+config SENSOR_MICON_LOGGING
+	tristate "SENSOR MICON LOGGING"
+	depends on INPUT_MISC_SENSOR_MICON
+	default n
+
+config INPUT_SENSOR_ACCELEROMETER
+	tristate "ACCELEROMETER SENSOR"
+	default y
+
+config USE_SENSOR_LSM6DS3
+	bool "USE SENSOR LSM6DS3"
+	default n
+	help
+		This Model uses LSM6DS3.
+
+config USE_SENSOR_LIS2DH12
+	bool "USE SENSOR LIS2DH12"
+	default y
+	help
+		This Model uses LIS2DH12.
+
+
+config INPUT_YAS_ACCELEROMETER_POSITION
+	int "YAS Acceleration Sensor Mounting Position on Board"
+	depends on INPUT_SENSOR_ACCELEROMETER
+	default "4"
+	help
+		Chip mounting position (pin 1).
+			0: top, upper-left
+			1: top, upper-right
+			2: top, lower-right
+			3: top, lower-left
+			4: bottom, upper-left
+			5: bottom, upper-right
+			6: bottom, lower-right
+			7: bottom, lower-left
+
+config INPUT_ML610Q793_ACCELEROMETER_POSITION
+	int "ML610Q793 Acceleration Sensor Mounting Position on Board"
+	depends on INPUT_SENSOR_ACCELEROMETER
+	default "3"
+	help
+		Chip mounting position (pin 1).
+			0: top, upper-left
+			1: top, upper-right
+			2: top, lower-right
+			3: top, lower-left
+			4: bottom, upper-left
+			5: bottom, upper-right
+			6: bottom, lower-right
+			7: bottom, lower-left
+
+config INPUT_ML610Q793_INTERFACE
+	int "ML610Q793 Interface"
+	depends on INPUT_ML610Q793_ACCELEROMETER
+	default "1"
+	help
+		0: I2C
+		1: SPI
+
+config INPUT_SENSOR_MAGNETOMETER
+	tristate "Geomagnetic Sensor"
+	depends on I2C
+	default n
+
+config INPUT_SENSOR_YAS_MAG
+	tristate "Geomagnetic Sensor"
+	depends on I2C
+	default n
+
+config INPUT_SENSOR_HSCDTD008A_MAG
+	tristate "Geomagnetic Sensor"
+	depends on I2C
+	default n
+
+
+config INPUT_YAS_MAGNETOMETER_POSITION
+	int "YAS Geomagnetic Sensor Mounting Position on Board"
+	depends on INPUT_YAS_MAGNETOMETER
+	default "7"
+	help
+		Chip mounting position (pin 1).
+			0: top, upper-left
+			1: top, upper-right
+			2: top, lower-right
+			3: top, lower-left
+			4: bottom, upper-left
+			5: bottom, upper-right
+			6: bottom, lower-right
+			7: bottom, lower-left
+
+config INPUT_SENSOR_GYROSCOPE
+	tristate "YAS Gyroscope Sensor"
+	default n
+
+config INPUT_YAS_GYROSCOPE_POSITION
+	int "YAS Gyroscope Sensor Mounting Position on Board"
+	depends on INPUT_YAS_GYROSCOPE
+	default "4"
+	help
+		Chip mounting position (pin 1).
+		0: top, upper-left
+		1: top, upper-right
+		2: top, lower-right
+		3: top, lower-left
+		4: bottom, upper-left
+		5: bottom, upper-right
+		6: bottom, lower-right
+		7: bottom, lower-left
+
+config INPUT_YAS_GYROSCOPE_INTERRUPT
+	bool "Gyroscope Interrupt support"
+	default n
+	depends on INPUT_YAS_GYROSCOPE
+
+config INPUT_YAS_GYROSCOPE_INTERFACE
+	int "Gyroscope Digital Interface"
+	depends on INPUT_YAS_GYROSCOPE
+	default "0"
+	help
+		0: I2C
+		1: SPI
+
+config INPUT_SENSOR_ORIENTATION
+	tristate "YAS Orientation Sensor"
+	depends on I2C
+	default n
+
+config INPUT_SENSOR_PRESSURE
+	tristate "YAS Pressure Sensor"
+	default n
+
+config INPUT_SENSOR_TEMPERATURE
+	tristate "YAS Temperature Sensor"
+	default n
+
+config INPUT_SENSOR_RELATIVE_HUMIDITY
+	tristate "YAS Relative Humidity Sensor"
+	default n
+
+config INPUT_SENSOR_AMBIENT_TEMPERATURE
+	tristate "YAS Ambient Temperature Sensor"
+	default n
+
+config INPUT_SENSOR_GRAVITY
+	tristate "YAS Gravity Sensor"
+	default n
+
+config INPUT_SENSOR_LINEAR_ACCELERATION
+	tristate "YAS Linear Acceleration Sensor"
+	default n
+
+config INPUT_SENSOR_ROTATION_VECTOR
+	tristate "YAS Rotation Vector Sensor"
+	default n
+
+config INPUT_SENSOR_GAME_ROTATION_VECTOR
+	tristate "GAME ROTATION VECTOR"
+	default n
+
+config INPUT_SENSOR_MAG_ROTATION_VECTOR
+	tristate "MAG ROTATION VECTOR"
+	default n
+
+config INPUT_SENSOR_SIGNIFICANT_MOTION
+	tristate "SIGNIFICANT MOTION"
+	default y
+
+config INPUT_SENSOR_STEP_COUNTER
+	tristate "STEP COUNTER"
+	default n
+
+config INPUT_SENSOR_STEP_DETECTOR
+	tristate "STEP DETECTOR"
+	default n
+
+config INPUT_SENSOR_UNCAL_MAGNETOMETER
+	tristate "UNCAL MAGNETOMETER"
+	default n
+
+config INPUT_SENSOR_UNCAL_GYROSCOPE
+	tristate "UNCAL GYROSCOPE"
+	default n
+
+config INPUT_SENSOR_DEVICE_ORIENTATION
+	tristate "DEVICE ORIENTATION"
+	default n
+
+config INPUT_SENSOR_STATIONARY_DETECT
+	tristate "STATIONARY DETECT"
+	default n
+
+config INPUT_SENSOR_MOTION_DETECT
+	tristate "MOTION DETECT"
+	default n
+
+config INPUT_SENSOR_EXT
+	tristate "SENSOR EXT"
+	default y
+
+config INPUT_SENSOR_GP2AP030
+	tristate "GP2AP030 Proximity/Light Sensor Driver"
+	default n
+	help
+		Support GP2AP030 Proximity/Light Sensor Driver.
+
+config INPUT_SENSOR_RPR0521
+	tristate "RPR0521 Proximity/Light Sensor Driver"
+	default n
+	help
+		Support RPR0521 Proximity/Light Sensor Driver.
+
+config INPUT_SENSOR_STK3338
+	tristate "STK3338 Proximity/Light Sensor Driver"
+	default n
+	help
+		Support STK3338 Proximity/Light Sensor Driver.
+
+config INPUT_SENSOR_APDS9960
+	tristate "apds9960 Proximity/Light/Gesture Sensor Driver"
+	default n
+	help
+		Support apds9960 Proximity/Light/Gesture Sensor Driver.
+
+config INPUT_SENSOR_LIGHT
+	tristate "LIGHT SENSOR"
+	default n
+
+config INPUT_SENSOR_PROXIMITY
+	tristate "PROXIMITY SENSOR"
+	default n
+
+config INPUT_SENSOR_GESTURE
+	tristate "GESTURE SENSOR"
+	default n
+
+config INPUT_SENSOR_EXT_VH
+	tristate "Extension VH SENSOR"
+	default n
+
+config INPUT_KC_MOTION_SENSOR
+	tristate "KC MOTION SENSOR"
+	default y
+
+config INPUT_SENSOR_UNDERWATER_DETECT
+	tristate "Underwater Detect"
+	default n
+
+config INPUT_SENSOR_PIEZO_PRESS
+	tristate "Piezo Press Sensor"
+	default n
+	help
+		Support XXX Piezo Press Sensor driver.
+		This is used piezo electoric sensor
+
+config INPUT_SENSOR_PIEZO_WAKEUP
+	tristate "Piezo Wakeup Sensor"
+	default n
+	help
+		Support XXX Piezo Wakeup Sensor driver.
+		This is used piezo electoric sensor.
+
+config INPUT_SENSOR_VOICE_TRIGGER
+	tristate "Voice Trigger Sensor"
+	default n
+	help
+		Support QuickLogic Voice Trigger Sensor driver.
+		This is used vt function.
+
+config INPUT_TI_MSP430
+	tristate "texas instruments MSP430"
+	default n
+	help
+		Support MicroController MSP430 made by TEXAS INSTRUMENT.
+		Piezo electronic sensor is connected as slave device.
+
+config INPUT_SENSOR_VT_WAKEUP
+	tristate "Function VT Wakeup"
+	default n
+	help
+		support function "VT wakeup".
+		In spite of naming VT-wakeup, even OK-QuickLogic can wakeup.
+		It's a funny specification.
+
+config SENSOR_POWER
+	tristate "Sensor Power Driver"
+	default y
+	help
+		Support Sensor Power Driver.
+
+config KC_CORRECT_LUXVALUE
+	tristate "Correct Lux Value"
+	default n
+	help
+		Support Light Driver's Correct Sequence
+
+config USE_VSENSORVDD
+	bool "USE VSENSOR VDD"
+	default y
+	help
+		Support Sensor's Power VSENSOR VDD
+
+config USE_GPIOMUX
+	bool "USE GPIOMUX"
+	default n
+	help
+		Support GPIOMUX Function
+
+config USE_MICON_SOFT_STRUCTURE
+	bool "USE_MICON_SOFT_STRUCTURE"
+	default y
+	help
+		Apply for Sensor Micon Structure
+
+config SENSORS_SOUND_VIB_PREVENTION
+	bool "SENSORS_SOUND_VIB_PREVENTION"
+	default y
+	help
+		Apply for Sensor Micon Structure
+		and Pedometer
+
+config USE_PROXIMITY_TEMPERATURE_CORRECTION
+	bool "PROXIMITY TEMPERATURE CORRECTION"
+	default n
+	help
+		Support Proximity sensor temperature correction
+
+config USE_SENSOR_KC_BOARD
+	bool "USE_SENSOR_KC_BOARD"
+	default n
+	help
+		Support Dynamic control by kc_board
+
+config USE_SENSOR_MICON_DEBUG
+	bool "USE_SENSOR_MICON_DEBUG"
+	default n
+	help
+		Apply for Sensor Micon Debug
+
+config USE_KC_SNS_SENSORS_PERFORMANCE_MEASURE_LOG
+	bool "USE_KC_SNS_SENSORS_PERFORMANCE_MEASURE_LOG"
+	default n
+	help
+		Enable kc sensors debug log for performance measure
+
+config USE_DEVICE_ORIENTATION_1ST_REPORT_DELAY
+	bool "USE_DEVICE_ORIENTATION_1ST_REPORT_DELAY"
+	default n
+	help
+		Support device orientation 1st report delay
+config USE_DBG_EOS_DATA_EXTRACTION
+	bool "USE_DBG_EOS_DATA_EXTRANCTION"
+	default y
+	help
+		Support the debug-function of data extraction.
+		This is used with eos s3.
+
+config USE_KC_SNS_PMGPIO_CTRL
+	bool "USE_KC_SNS_PMGPIO_CTRL"
+	default n
+	help
+		If you say "yes", you can use pinctrl setting of pm_gpio in kc_sensor_power.c
+

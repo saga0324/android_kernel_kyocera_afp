@@ -1,0 +1,66 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&rpm_bus {
+	rpm-regulator-ldoa14 {
+		status = "okay";
+		pm8916_l14: regulator-l14 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			qcom,init-voltage = <2950000>;
+			status = "okay";
+		};
+	};
+
+	rpm-regulator-ldoa15 {
+		status = "okay";
+		pm8916_l15: regulator-l15 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			qcom,init-voltage = <1800000>;
+			status = "okay";
+		};
+	};
+
+	rpm-regulator-ldoa16 {
+		status = "okay";
+		pm8916_l16: regulator-l16 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			qcom,init-voltage = <2950000>;
+			status = "okay";
+		};
+	};
+
+	rpm-regulator-ldoa17 {
+		status = "okay";
+		pm8916_l17: regulator-l17 {
+			regulator-min-microvolt = <2800000>;
+			regulator-max-microvolt = <3100000>;
+			qcom,init-voltage = <3037500>;
+			status = "okay";
+		};
+	};
+
+	rpm-regulator-ldoa18 {
+		status = "okay";
+		pm8916_l18: regulator-l18 {
+			regulator-min-microvolt = <2700000>;
+			regulator-max-microvolt = <2850000>;
+			qcom,init-voltage = <2850000>;
+			status = "okay";
+		};
+	};
+};
+

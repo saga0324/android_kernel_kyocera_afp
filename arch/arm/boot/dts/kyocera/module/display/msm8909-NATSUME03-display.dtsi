@@ -1,0 +1,99 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2019 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "dsi-panel-kc-djn2-fwvga-video.dtsi"
+#include "dsi-panel-kc-tovis-fwvga-video.dtsi"
+#include "dsi-panel-kc-tovis2-fwvga-video.dtsi"
+
+&soc {
+	mdss_dsi: qcom,mdss_dsi@0{
+		mdss_dsi0: qcom,mdss_dsi_ctrl0@1ac8000 {
+			vddio-supply = <&pm8909_l15>;
+			vdd-supply = <&pm8916_l17>;
+		};
+	};
+
+	dsi_panel_pwr_supply: dsi_panel_pwr_supply{
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vdd";
+			qcom,supply-min-voltage = <3037500>;
+			qcom,supply-max-voltage = <3037500>;
+			qcom,supply-enable-load = <100000>;
+			qcom,supply-disable-load = <100>;
+		};
+
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <100000>;
+			qcom,supply-disable-load = <100>;
+		};
+	};
+
+
+	qcom,mdss_dsi_pll@1ac8300 {
+		vddio-supply = <&pm8916_l6>;
+	};
+	
+	i2c@78b9000 { /* BLSP1 QUP5 */
+		/delete-node/ synaptics@20;
+	};
+
+};
+
+
+
+/delete-node/ &dsi_hx8394d_720_vid;
+/delete-node/ &dsi_hx8394d_qhd_vid;
+
+
+&dsi_kc_djn2_fwvga_vid {
+	qcom,cont-splash-enabled;
+	kc,led-type = "lv5216_2";
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_kc_tovis_fwvga_vid {
+	qcom,cont-splash-enabled;
+	kc,led-type = "lv5216_2";
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_kc_tovis2_fwvga_vid {
+	qcom,cont-splash-enabled;
+	kc,led-type = "lv5216_2";
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_kc_tovis2_fwvga_vid>;
+	
+//	pinctrl-names = "mdss_default", "mdss_sleep";
+//	pinctrl-0 = <&lcd_rst_n_active>;
+//	pinctrl-1 = <&lcd_rst_n_suspend>;
+	/delete-property/ pinctrl-names;
+	/delete-property/ pinctrl-0;
+	/delete-property/ pinctrl-1;
+
+	qcom,platform-reset-gpio = <&msm_gpio 30 0>;
+	/delete-property/ qcom,platform-bklight-en-gpio;
+};
+
+&msm_gpio {
+	/delete-node/ pmx_mdss;
+	/delete-node/ pmx_mdss_te;
+};

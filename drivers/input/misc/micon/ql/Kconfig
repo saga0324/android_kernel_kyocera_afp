@@ -1,0 +1,43 @@
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2019 KYOCERA Corporation
+#
+# ql drivers configuration
+#
+
+config QLPOWER
+	bool "Enable QLPOWER Support"
+	default y
+	help
+		Add support for qlpower.
+
+config QLPINCTRL
+	bool "Enable QLPINCTRL Support"
+	default y
+	help
+		Add support for qlpinctrl.
+
+config QL_PMGPIO_CTRL
+	bool "Enable PMGPIO CTRL Support"
+	default y
+	help
+		If you use Qualcomm chipset, you specify this value "yes".
+		If you use MediaTek chipset, you specify this value "no"
+
+config QL_SPI_CTRL_FROMCLIENT
+	bool "Enable SPI CTRL Support"
+	default n
+	help
+		You can control spi gpio function using pinctrl when qlspi driver does spi-access.
+		Qualcomm model does this process in spi_qsd but MediaTek does not.
+		So if you use MediaTek chip-set, you should define "y".
+		In constract, you use Qcom chip-set, you should define "n"
+
+config QL_MICON_USE_EXTERNAL_SLEEPCLK
+	bool "Enable SPI CTRL Support"
+	default n
+	help
+		If you use external sleep clk for EOSS3, this value should defined "y".
+
+config PSEUDO_SALEAE_LOG
+	tristate "SENSOR MICON"
+	default n
