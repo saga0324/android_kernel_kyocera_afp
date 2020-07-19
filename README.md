@@ -6,6 +6,7 @@ Info:
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
+|au|TORQUE X01|KYF33|5.1.1|3.10.49|103.0.2a70|2019/04/16|LA.BR.1.2.3-10710-8x09.0|None
 |au|かんたんケータイ|KYF32|5.1.1|3.10.49|103.0.2600|2019/04/25|LA.BR.1.2.3-10710-8x09.0|None
 |SoftBankBiz|DIGNO ケータイ for Biz|501KCe|5.1.1|3.10.49|108.0.c500|2019/06/05|LA.BR.1.2.3-10710-8x09.0|None
 |Y!Mobile|DIGNO ケータイ|502KC|5.1.1|3.10.49|111.0.9000|2019/06/05|LA.BR.1.2.3-10710-8x09.0|None
