@@ -6,6 +6,7 @@ Info:
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
+|SoftBank|DIGNO ケータイ2|701KC|5.1.1|3.10.49|103.0.3010|2019/05/23|LA.BR.1.2.3-10710-8x09.0|None
 |au|GRATINA|KYF37|5.1.1|3.10.49|105.0.2700|2020/05/25|LA.BR.1.2.3-10710-8x09.0|None
 |Y!Mobile|DIGNO ケータイ2|702KC|5.1.1|3.10.49|103.0.5c00|2019/05/23|LA.BR.1.2.3-10710-8x09.0|None
 |au|MARVERA|KYF35|5.1.1|3.10.49|101.0.2500|2019/04/04|LA.BR.1.2.3-10710-8x09.0|None
