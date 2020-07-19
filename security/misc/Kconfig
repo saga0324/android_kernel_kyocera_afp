@@ -1,0 +1,14 @@
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2014 KYOCERA Corporation
+#
+# Security misc configuration
+#
+
+config SECURITY_KCPDSM
+	bool "Enable Kyocera PiD-based Security Module"
+	default n
+	depends on SECURITY
+	help
+	  If enabled, kernel supports kcpdsm.
+	  If you are unsure how to answer this question, answer N.

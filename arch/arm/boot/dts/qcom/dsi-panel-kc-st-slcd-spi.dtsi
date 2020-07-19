@@ -1,0 +1,57 @@
+/*
+ * This software is contributed or developed by KYOCERA Corporation.
+ * (C) 2014 KYOCERA Corporation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	disp_ext_sub: kc,disp_ext_sub {
+		compatible = "kc,disp_ext_sub";
+		kc,disp-ext-sub-panel-width = <102>;
+		kc,disp-ext-sub-panel-height = <90>;
+		kc,disp-ext-sub-bpp = <16>;
+		kc,disp-ext-sub-pwron-cmd = [
+							10 02 C3 50 /* Wait(50ms) */
+							20 02 00 01 /* Sig(Rst-Hi) */
+							10 03 01 D4 C0 /* Wait(120mS) */
+				];
+		kc,disp-ext-sub-on-cmd = [
+							20 02 00 00 /* Sig(Rst-Lo) */
+							10 01 15 /* 21us Wait */
+							20 02 00 01 /* Sig(Rst-Hi) */
+							10 03 01 D4 C0 /* Wait(120mS) */
+							01 0A AE 38 B8 A0 C8 40 00 44 00 2C
+							10 02 4E 20 /* Wait(20ms) */
+							01 01 2E
+							10 02 4E 20 /* Wait(20ms) */
+							01 01 2F
+							10 02 4E 20
+							01 0F AB 27 81 18 55 48 70 4C 0A A6 A4 A8 7B 11 00
+				];
+
+		kc,disp-ext-sub-post-on-cmd = [
+							01 01 AF
+				];
+
+		kc,disp-ext-sub-off-cmd = [
+							01 02 AE A9
+							10 03 03 D0 90 /* Wait(250ms) */
+				];
+
+		kc,disp-ext-sub-pwroff-cmd = [
+							20 02 00 00 /* Sig(Rst-Lo) */
+							10 02 03 E8 /* Wait */
+				];
+		kc,disp-ext-sub-ram-wr-cmd = [
+							01 03 B0 10 00
+				];
+	};
+};
