@@ -1,0 +1,9 @@
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2014 KYOCERA Corporation
+
+config CDEV_DNAND
+        bool "dnand device support"
+        default n
+        help
+          Say Y here if you want to support the dnand device.
+          When in doubt, say "N".
