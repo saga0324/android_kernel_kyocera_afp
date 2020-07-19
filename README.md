@@ -6,6 +6,7 @@ Info:
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
+|au|INFOBAR xv|KYX31|5.1.2|3.10.49|101.0.5400|2019/01/29|LA.BR.1.2.3-13810-8x09.0|None
 |au|かんたんケータイ|KYF38|5.1.1|3.10.49|102.0.0820|2020/03/02|LA.BR.1.2.3-10710-8x09.0|None
 |SoftBankBiz|DIGNO ケータイ2 for Biz|703KC|5.1.1|3.10.49|103.0.ad00|2019/05/23|LA.BR.1.2.3-10710-8x09.0|None
 |SoftBank|DIGNO ケータイ2|701KC|5.1.1|3.10.49|103.0.3010|2019/05/23|LA.BR.1.2.3-10710-8x09.0|None
