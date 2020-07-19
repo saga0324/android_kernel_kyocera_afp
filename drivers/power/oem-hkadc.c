@@ -21,7 +21,7 @@
 #include <linux/spmi.h>
 
 #ifdef CONFIG_OEM_HKADC_USB_TM
-#include <oem-hkadc_usb_tm.h>
+#include "oem-hkadc_usb_tm.h"
 #endif
 
 //#define FEATURE_HKADC_DEBUG
