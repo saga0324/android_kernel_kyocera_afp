@@ -1,0 +1,45 @@
+#
+# This software is contributed or developed by KYOCERA Corporation.
+# (C) 2015 KYOCERA Corporation
+# (C) 2016 KYOCERA Corporation
+#
+
+config INPUT_SENSOR_PROXIMITY
+	tristate "Proximity/Light Sensor Driver"
+	default n
+	help
+		Support Proximity/Light Sensor Driver.
+
+config INPUT_ALPS_INPUT
+        tristate "Input device driver for alps sensor"
+	default y
+
+config INPUT_HSCDTD
+        tristate "GeoMagneticField device driver for I2C"
+	default n
+
+config INPUT_SENSOR_ACCELEROMETER
+        tristate "Accelerometer device driver for I2C"
+	default y
+
+
+config SENSORS
+	bool "Sensors Class Support"
+	default n
+	help
+	  This option enables the sensor sysfs class in /sys/class/sensors.
+	  You'll need this to do anything useful with sensorss. If unsure, say N.
+
+config SENSORS_SSC
+	bool "Enable Sensors Driver Support for SSC"
+	default n
+	help
+	  Add support for sensors SSC driver.
+	  This driver is used for exercising sensors use case,
+	  time syncing with ADSP clock.
+
+config KC_COLOR_VARIATION
+	tristate "Color Variation"
+	default n
+	help
+		Support Color Variation.
