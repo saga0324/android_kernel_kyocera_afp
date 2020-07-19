@@ -15,11 +15,11 @@
 
 #include <linux/module.h>
 #include <linux/power_supply.h>
-#include <oem-bms.h>
+#include "oem-bms.h"
 #include <linux/dnand_cdev_driver.h>
 #include <linux/qpnp/qpnp-adc.h>
 #include <linux/wakelock.h>
-#include <oem-chg_control.h>
+#include "oem-chg_control.h"
 #include <linux/rtc.h>
 
 #include <soc/qcom/smsm.h>
