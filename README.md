@@ -6,6 +6,7 @@ Info:
 
 |Carrier|Device Name|Model|Android version|Linux Version|Software Version|Official Release Date|CAF Branch|Tested defconfig
 |:-----:|:-----:|:-----:|:-----:|:----:|:-----:|:-----:|:-----:|:-----:|
+|Y!Mobile|DIGNO ケータイ2|702KC|5.1.1|3.10.49|103.0.5c00|2019/05/23|LA.BR.1.2.3-10710-8x09.0|None
 |au|MARVERA|KYF35|5.1.1|3.10.49|101.0.2500|2019/04/04|LA.BR.1.2.3-10710-8x09.0|None
 |au|かんたんケータイ|KYF36|5.1.1|3.10.49|101.0.2600|2019/04/02|LA.BR.1.2.3-10710-8x09.0|None
 |au|GRATINA 4G|KYF34|5.1.1|3.10.49|107.0.2900|2019/08/06|LA.BR.1.2.3-10710-8x09.0|None
