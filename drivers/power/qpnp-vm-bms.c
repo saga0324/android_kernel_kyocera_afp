@@ -45,7 +45,7 @@
 #include <soc/qcom/oem_fact.h>
 
 #ifdef CONFIG_OEM_BMS
-#include <oem-bms.h>
+#include "oem-bms.h"
 #endif
 
 #define _BMS_MASK(BITS, POS) \

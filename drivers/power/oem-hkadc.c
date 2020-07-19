@@ -22,11 +22,11 @@
 #include <linux/spmi.h>
 
 #ifdef CONFIG_OEM_BMS
-#include <oem-bms.h>
+#include "oem-bms.h"
 #endif
 
 #ifdef CONFIG_OEM_HKADC_USB_TM
-#include <oem-hkadc_usb_tm.h>
+#include "oem-hkadc_usb_tm.h"
 #endif
 
 //#define FEATURE_HKADC_DEBUG
