@@ -18,7 +18,7 @@
 #include <linux/platform_device.h>
 #include <linux/qpnp/qpnp-adc.h>
 #include <linux/power_supply.h>
-#include <oem-chg_control.h>
+#include "oem-chg_control.h"
 
 #define OEM_CHARGER_CMD_DEV_NAME "oem_charger_cmd"
 
