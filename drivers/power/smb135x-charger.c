@@ -39,11 +39,11 @@
 #include <soc/qcom/oem_fact.h>
 
 #ifdef CONFIG_OEM_BMS
-#include <oem-bms.h>
+#include "oem-bms.h"
 #endif
 
 #ifdef CONFIG_OEM_HKADC_USB_TM
-#include <oem-hkadc_usb_tm.h>
+#include "oem-hkadc_usb_tm.h"
 #endif
 
 #include <linux/qpnp/qpnp-adc.h>
