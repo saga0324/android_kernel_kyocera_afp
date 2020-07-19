@@ -1,0 +1,28 @@
+KYOCERA Corporation
+
+●ビルド手順
+1. Code Aurora Forum (CAF) よりBase環境をDownloadする。
+    https://www.codeaurora.org/
+
+    Manifest Fileは以下になります。
+    https://www.codeaurora.org/xwiki/bin/QAEP/
+    <Releases on release branch>
+     October 29, 2015 	 LA.BR.1.2.3-10710-8x09.0 	 msm8909 	LA.BR.1.2.3-10710-8x09.0.xml	 05.01.01 
+
+    $ repo init -u git://codeaurora.org/platform/manifest.git -b release -m LA.BR.1.2.3-10710-8x09.0.xml --repo-url=git://codeaurora.org/tools/repo.git
+    $ repo sync
+
+        注）Download方法及び不明点の詳細はCAFをご参照ください。
+
+2. kernelフォルダを、1.でDownloadした環境に上書きします。
+
+3. 環境変数PATHにJava Development Kit (JDK) のpathを追加します。
+    $ export PATH=<JDKのInstallPath>/bin:$PATH
+
+4. 下記Commandを実行します。
+    $ source build/envsetup.sh
+    $ choosecombo release msm8909 user
+    $ make clean && make -j8 BOARD_SECURITYIMAGE_FILE_SYSTEM_TYPE=ext4 BOARD_KERNEL_CMDLINE="console=ttyHSL0,115200,n8 no_console_suspend=1 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk" BOARD_SYSTEMIMAGE_PARTITION_SIZE=1612709888 BOARD_USERDATAIMAGE_PARTITION_SIZE=4432330752 BOARD_CACHEIMAGE_PARTITION_SIZE=1049100288 BOARD_PERSISTIMAGE_PARTITION_SIZE=16777216 BOARD_SECURITYIMAGE_PARTITION_SIZE=8388608 TARGET_USES_LOGD=false
+    Note:"-j8"はBuild環境に合わせて変更ください。
+
+以上
